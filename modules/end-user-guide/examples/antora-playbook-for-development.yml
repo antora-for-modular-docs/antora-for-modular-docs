@@ -1,0 +1,27 @@
+---
+# Use this Antora Playbook for development, to build current state in HEAD.
+site:
+  title: Component Name Documentation <1>
+  # Disabling url on purpose to avoid htmltest crawling the live website.
+  start_page: component-name:end-user-guide:introduction.adoc <2>
+  robots: allow
+content:
+  sources:
+    - url: ./
+      branches: HEAD
+      edit_url: "https://github.com/themr0c/antora-for-modular-docs/edit/main/{path}" <3>
+output:
+  destinations:
+    - provider: fs
+      clean: true
+      path: build/site
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+urls:
+  html_extension_style: indexify
+  redirect_facility: static
+runtime:
+  cache_dir: ./.cache/antora

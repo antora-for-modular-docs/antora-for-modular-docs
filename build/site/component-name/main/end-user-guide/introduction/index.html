@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction :: Project Name Documentation</title>
+    <meta name="keywords" content="introduction, antora">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+    <script>var uiRootPath = '../../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../../_/img/project-logo.svg" class="navbar-logo" alt="Project logo">
+        <a href="/index.html">Project Name Documentation</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item hide-for-print">
+          <script async src="https://cse.google.com/cse.js?cx=002898025167115630151:gnr5edrg2eo"></script>
+          <div class="gcse-searchbox" enableAutoComplete="true"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="gcse-searchresults"></div>
+</header><div class="body">
+<div class="nav-container" data-component="component-name" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="./">Component Name Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="./">Introduction</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Component Name Documentation</span>
+    <span class="version">next</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="./">Component Name Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="./">next</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="./" class="home-link is-current"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="./">Component Name Documentation</a></li>
+    <li><a href="./">Introduction</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///projects/modules/end-user-guide/pages/introduction.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Introduction</h1>
+<h1 id="proc_starting-a-new-antora-project_context" class="sect0"><a class="anchor" href="#proc_starting-a-new-antora-project_context"></a>Starting a new Antora project</h1>
+<div class="paragraph _abstract">
+<p>Write a short introductory paragraph that provides an overview of the module.</p>
+</div>
+<div class="paragraph">
+<p>Procedure modules should include the steps that users perform and address user motivation.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Docker or Podman.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Organize the content. Define the project, component and guides names. Current example defines a component <code>component-name</code> containing one guide <code>end-user-guide</code>. Create the requested directory in the <code>modules</code> directory. See <a href="https://docs.antora.org/antora/2.3/standard-directories/">Standard File and Directory Set</a></p>
+</li>
+<li>
+<p>Edit <code>antora.yml</code>. See <a href="https://docs.antora.org/antora/2.3/component-version-descriptor/">What’s antora.yml?</a></p>
+<div class="listingblock">
+<div class="content">
+<pre>---
+name: component-name <i class="conum" data-value="1"></i><b>(1)</b>
+title: Component Name Documentation <i class="conum" data-value="2"></i><b>(2)</b>
+version: master <i class="conum" data-value="3"></i><b>(3)</b>
+display_version: next <i class="conum" data-value="4"></i><b>(4)</b>
+start_page: end-user-guide:introduction.adoc <i class="conum" data-value="5"></i><b>(5)</b>
+nav:
+  - modules/end-user-guide/nav.adoc <i class="conum" data-value="6"></i><b>(6)</b>
+asciidoc:
+  attributes:
+    # for antora
+    experimental: ""
+    favicon: favicon.png
+    icons: font
+    # for the project
+    context: project-context <i class="conum" data-value="7"></i><b>(7)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Define project <code>name</code>. (no spaces: results in an URL fragment)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Define project <code>title</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Define <code>version</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Define <code>display_version</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Define project <code>start_page</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Define navigation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Define project <code>context</code>. (no spaces: results in an URL fragment)</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Edit <code>antora-playbook-for-development.yml</code>. See <a href="https://docs.antora.org/antora/2.3/playbook/">What’s an Antora playbook?</a></p>
+<div class="listingblock">
+<div class="content">
+<pre>---
+# Use this Antora Playbook for development, to build current state in HEAD.
+site:
+  title: Component Name Documentation <i class="conum" data-value="1"></i><b>(1)</b>
+  # Disabling url on purpose to avoid htmltest crawling the live website.
+  start_page: component-name:end-user-guide:introduction.adoc <i class="conum" data-value="2"></i><b>(2)</b>
+  robots: allow
+content:
+  sources:
+    - url: ./
+      branches: HEAD
+      edit_url: "https://github.com/themr0c/antora-for-modular-docs/edit/main/{path}" <i class="conum" data-value="3"></i><b>(3)</b>
+output:
+  destinations:
+    - provider: fs
+      clean: true
+      path: build/site
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+urls:
+  html_extension_style: indexify
+  redirect_facility: static
+runtime:
+  cache_dir: ./.cache/antora</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Define project <code>title</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Define project <code>start_page</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Define <code>edit_url</code></td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Edit <code>antora-playbook-for-publication.yml</code></p>
+<div class="listingblock">
+<div class="content">
+<pre>---
+# Use this Antora Playbook for publication, to build the released version branch.
+site:
+  title: Example Documentation <i class="conum" data-value="1"></i><b>(1)</b>
+  # The url property is mandatory to generate the 404 and sitemap files.
+  url: https://project.tld <i class="conum" data-value="2"></i><b>(2)</b>
+  start_page: end-user-guide:introduction.adoc <i class="conum" data-value="3"></i><b>(3)</b>
+  keys:
+    google_analytics: "PLACEHOLDER" <i class="conum" data-value="4"></i><b>(4)</b>
+  robots: allow
+content:
+  sources:
+    - url: ./
+      branches:
+        - stable <i class="conum" data-value="5"></i><b>(5)</b>
+        - main <i class="conum" data-value="5"></i><b>(5)</b>
+      edit_url: "https://github.com/themr0c/antora-for-modular-docs/edit/7.36.x/{path}" <i class="conum" data-value="6"></i><b>(6)</b>
+output:
+  destinations:
+    - provider: fs
+      clean: true
+      path: build/site
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+urls:
+  html_extension_style: indexify
+  redirect_facility: static
+runtime:
+  cache_dir: ./.cache/antora</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Define project <code>title</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Define peoject <code>url</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Define project <code>start_page</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Define <code>google_analytics</code> key.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Define branches to build.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Define <code>edit_url</code>.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Replace <code>supplemental-ui/img/project-icon.svg</code> by the project logo.</p>
+</li>
+<li>
+<p>Optionally, edit <code>supplemental-ui/partials/header-content.hbs</code>.</p>
+</li>
+<li>
+<p>Create an initial commit containing the result.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Run preview on a local environment</p>
+<div class="listingblock">
+<div class="content">
+<pre>./runnerpreview.sh</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.antora.org/antora/2.3/">Antora documentation</a></p>
+</li>
+<li>
+<p>For more details on writing procedure modules, see the <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+<li>
+<p>Use a consistent system for file names, IDs, and titles. For tips, see <em>Anchor Names and File Names</em> in <a href="https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide">Modular Documentation Reference Guide</a>.</p>
+</li>
+</ul>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../../_/js/site.js"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+---
+name: component-name
+title: Component Name Documentation
+version: main
+display_version: next
+start_page: end-user-guide:introduction.adoc
+nav:
+  - modules/end-user-guide/nav.adoc
+asciidoc:
+  attributes:
+    # for antora
+    experimental: ""
+    favicon: favicon.png
+    icons: font
+    # for the project
+    context: context

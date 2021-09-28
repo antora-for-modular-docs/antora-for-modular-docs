@@ -1,0 +1,99 @@
+////
+Base the file name and the ID on the module title. For example:
+* file name: proc-doing-procedure-a.adoc
+* ID: [id="proc-doing-procedure-a_{context}"]
+* Title: = Doing procedure A
+
+The ID is an anchor that links to the module. Avoid changing it after the module has been published to ensure existing links are not broken.
+
+The `context` attribute enables module reuse. Every module ID includes {context}, which ensures that the module has a unique ID even if it is reused multiple times in a guide.
+////
+
+////
+Indicate the module type in one of the following
+ways:
+Add the prefix proc- or proc_ to the file name.
+Add the following attribute before the module ID:
+////
+:_module-type: PROCEDURE
+
+[id="proc_starting-a-new-antora-project_{context}"]
+= Starting a new Antora project
+////
+Start the title of a procedure module with a verb, such as Creating or Create. See also _Wording of headings_ in _The IBM Style Guide_.
+////
+
+[role="_abstract"]
+Write a short introductory paragraph that provides an overview of the module.
+
+Procedure modules should include the steps that users perform and address user motivation.
+
+.Prerequisites
+
+* Docker or Podman.
+
+.Procedure
+
+. Organize the content. Define the project, component and guides names. Current example defines a component `component-name` containing one guide `end-user-guide`. Create the requested directory in the `modules` directory. See link:https://docs.antora.org/antora/2.3/standard-directories/[Standard File and Directory Set]
+
+
+. Edit `antora.yml`. See link:https://docs.antora.org/antora/2.3/component-version-descriptor/[What’s antora.yml?]
++
+----
+include::example$antora.yml[]
+----
+<1> Define project `name`. (no spaces: results in an URL fragment)
+<2> Define project `title`.
+<3> Define `version` 
+<4> Define `display_version`.
+<5> Define project `start_page`.
+<6> Define navigation.
+<7> Define project `context`. (no spaces: results in an URL fragment)
+
+
+
+. Edit `antora-playbook-for-development.yml`. See link:https://docs.antora.org/antora/2.3/playbook/[What’s an Antora playbook?]
++
+----
+include::example$antora-playbook-for-development.yml[]
+----
+<1> Define project `title`.
+<2> Define project `start_page`.
+<3> Define `edit_url`
+
+
+. Edit `antora-playbook-for-publication.yml`
++
+----
+include::example$antora-playbook-for-publication.yml[]
+----
+<1> Define project `title`.
+<2> Define peoject `url`
+<3> Define project `start_page`.
+<4> Define `google_analytics` key.
+<5> Define branches to build.
+<6> Define `edit_url`.
+
+. Replace `supplemental-ui/img/project-icon.svg` by the project logo.
+
+. Optionally, edit `supplemental-ui/partials/header-content.hbs`.
+
+. Create an initial commit containing the result.
+
+
+.Verification
+
+
+. Run preview on a local environment
++
+----
+./runnerpreview.sh
+----
+
+[role="_additional-resources"]
+.Additional resources
+
+* link:https://docs.antora.org/antora/2.3/[Antora documentation]
+* For more details on writing procedure modules, see the link:https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide[Modular Documentation Reference Guide].
+* Use a consistent system for file names, IDs, and titles. For tips, see _Anchor Names and File Names_ in link:https://github.com/redhat-documentation/modular-docs#modular-documentation-reference-guide[Modular Documentation Reference Guide].
+

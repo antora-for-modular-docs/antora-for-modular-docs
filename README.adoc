@@ -1,0 +1,3 @@
+# Starting an Antora project
+
+Template repository to start an Antora project compatible with Modular Docs
