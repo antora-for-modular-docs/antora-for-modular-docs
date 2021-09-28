@@ -1,38 +1,19 @@
-////
-Base the file name and the ID on the module title. For example:
-* file name: proc-doing-procedure-a.adoc
-* ID: [id="proc-doing-procedure-a_{context}"]
-* Title: = Doing procedure A
 
-The ID is an anchor that links to the module. Avoid changing it after the module has been published to ensure existing links are not broken.
-
-The `context` attribute enables module reuse. Every module ID includes {context}, which ensures that the module has a unique ID even if it is reused multiple times in a guide.
-////
-
-////
-Indicate the module type in one of the following
-ways:
-Add the prefix proc- or proc_ to the file name.
-Add the following attribute before the module ID:
-////
 :_module-type: PROCEDURE
 
 [id="proc_starting-a-new-antora-project_{context}"]
 = Starting a new Antora project
-////
-Start the title of a procedure module with a verb, such as Creating or Create. See also _Wording of headings_ in _The IBM Style Guide_.
-////
 
 [role="_abstract"]
-Write a short introductory paragraph that provides an overview of the module.
-
-Procedure modules should include the steps that users perform and address user motivation.
+This procedure describes how to start an Antora website compatible with the Modular Documentation Initiative Guidelines, using the resources present in the https://github.com/themr0c/antora-for-modular-docs
 
 .Prerequisites
 
 * Docker or Podman.
 
 .Procedure
+
+. Download the latest archive of the template repository https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip, extract the content to a new directory, and initialize a Git repository in that directory. Alternatively, copy the content of the archive to a directory with current content you wish to build with Antora.
 
 . Organize the content. Define the project, component and guides names. Current example defines a component `component-name` containing one guide `end-user-guide`. Create the requested directory in the `modules` directory. See link:https://docs.antora.org/antora/2.3/standard-directories/[Standard File and Directory Set]
 
@@ -49,7 +30,6 @@ include::example$antora.yml[]
 <5> Define project `start_page`.
 <6> Define navigation.
 <7> Define project `context`. (no spaces: results in an URL fragment)
-
 
 
 . Edit `antora-playbook-for-development.yml`. See link:https://docs.antora.org/antora/2.3/playbook/[What’s an Antora playbook?]
@@ -74,6 +54,7 @@ include::example$antora-playbook-for-publication.yml[]
 <5> Define branches to build.
 <6> Define `edit_url`.
 
+
 . Replace `supplemental-ui/img/project-icon.svg` by the project logo.
 
 . Optionally, edit `supplemental-ui/partials/header-content.hbs`.
@@ -84,7 +65,7 @@ include::example$antora-playbook-for-publication.yml[]
 .Verification
 
 
-. Run preview on a local environment
+. Run preview on a local environment. The build is using same container image as the che-docs project.
 +
 ----
 ./runnerpreview.sh
