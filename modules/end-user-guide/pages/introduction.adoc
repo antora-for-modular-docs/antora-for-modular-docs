@@ -1,0 +1,24 @@
+// Metadata for Antora
+:navtitle: Introduction
+:keywords: introduction, antora
+:page-aliases: old-introduction
+// End of metadata for Antora
+
+:parent-context-of-introduction: {context}
+
+[id="introduction_{context}"]
+= Introduction
+
+:context: introduction
+
+// [role="_abstract"]
+
+// == Prerequisites
+
+include::partial$proc_starting-a-new-antora-project.adoc[leveoffset=+1]
+
+// [role="_additional-resources"]
+// == Additional resources (or Next steps)
+
+:context: {parent-context-of-introduction}]
+
