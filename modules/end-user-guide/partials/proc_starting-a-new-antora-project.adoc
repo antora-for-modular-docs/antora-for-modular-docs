@@ -12,7 +12,16 @@ Starting a new Antora project compatible with Modular Documentation.
 
 .Procedure
 
-. Download the https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive] and decompress it. The archive contains:
+. Create a repository using link:https://github.com/themr0c/antora-for-modular-docs/generate[the Antora for Modular Docs repository template] and clone the repository to your local environment.
+
+. Alternatively, download the https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive], decompress it, and use the content of this archive to start a new repository.
++
+----
+$ cd antora-for-modular-docs
+$ git init
+----
+
+. The new repository contains:
 
 * The current documentation.
 * Antora configuration, to adapt to your needs.
@@ -20,13 +29,6 @@ Starting a new Antora project compatible with Modular Documentation.
 * A GitHub workflow to build, validate and publish a preview for pull requests.
 * Configuration to edit and build the documentation on link:https://workspaces.openshift.com[Eclipse Che hosted by Red Hat]
 * Configuration for the link:https://github.com/wjdp/htmltest[`htmltest`] link checker and other tools.
-
-. Use the content of this archive to start a new repository.
-+
-----
-$ cd antora-for-modular-docs
-$ git init
-----
 
 . Current example defines an unique module: `end-user-guide`. Adapt the setup to your needs:
 
@@ -61,7 +63,6 @@ include::example$antora-playbook-for-development.yml[]
 ----
 <1> Define project `title`.
 <2> Define project `start_page`.
-<3> Define `edit_url`
 
 
 . Edit `antora-playbook.yml`
