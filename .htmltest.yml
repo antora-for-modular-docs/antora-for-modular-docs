@@ -18,3 +18,4 @@ CacheExpires: "12h" # Default is 2 weeks.
 ExternalTimeout: 60 # (seconds) default is 15.
 IgnoreURLs:
   - https://cse.google.com/cse.js
+  - https://github.com/themr0c/antora-for-modular-docs/generate

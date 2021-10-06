@@ -14,7 +14,7 @@ content:
       branches: 
         - stable <5>
         - main <5>
-      edit_url: "__<git_repository_URL>__/edit/main/{path}" <6>
+      edit_url: "__<git_repository_URL>__/edit/main/\{path}" <6>
 output:
   destinations:
     - provider: fs

@@ -12,7 +12,16 @@ Starting a new Antora project compatible with Modular Documentation.
 
 .Procedure
 
-. Download the https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive] and decompress it. The archive contains:
+. Create a repository using link:https://github.com/themr0c/antora-for-modular-docs/generate[the Antora for Modular Docs repository template] and clone the repository to your local environment.
+
+. Alternatively, download the https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive], decompress it, and use the content of this archive to start a new repository.
++
+----
+$ cd antora-for-modular-docs
+$ git init
+----
+
+. The new repository contains:
 
 * The current documentation.
 * Antora configuration, to adapt to your needs.
@@ -20,13 +29,6 @@ Starting a new Antora project compatible with Modular Documentation.
 * A GitHub workflow to build, validate and publish a preview for pull requests.
 * Configuration to edit and build the documentation on link:https://workspaces.openshift.com[Eclipse Che hosted by Red Hat]
 * Configuration for the link:https://github.com/wjdp/htmltest[`htmltest`] link checker and other tools.
-
-. Use the content of this archive to start a new repository.
-+
-----
-$ cd antora-for-modular-docs
-$ git init
-----
 
 . Current example defines an unique module: `end-user-guide`. Adapt the setup to your needs:
 
@@ -61,7 +63,6 @@ include::example$antora-playbook-for-development.yml[]
 ----
 <1> Define project `title`.
 <2> Define project `start_page`.
-<3> Define `edit_url`
 
 
 . Edit `antora-playbook.yml`
@@ -82,12 +83,6 @@ include::example$antora-playbook.yml[]
 
 . Optionally, edit `supplemental-ui/partials/header-content.hbs`.
 
-. Create a Netlify token `NETLIFY_AUTH_TOKEN`. See: https://app.netlify.com/user/applications/personal[Netlify - Create a new personal access token]. See: link: https://www.netlify.com/docs/cli/#obtain-a-token-in-the-netlify-ui[Obtaining a token with the UI].
-
-. To publish the build result for the pull requests, set the `NETLIFY_SITE_ID` environment variable in the remote git repository configuration (settings/secrets/actions). See: link:https://github.com/netlify/actions/tree/master/cli[Netlify GitHub Action CLI documentation]
-
-. Optionally, set `NETLIFY_SITE_ID` environment variable in the remote git repository configuration (settings/secrets/actions), to declare the API site ID. See: link:https://docs.netlify.com/cli/get-started/#link-with-an-environment-variable[Link with an environment variable].
-
 . Create an initial commit containing the result and publish to the remote Git repository.
 +
 ----
@@ -97,6 +92,16 @@ $ git push
 ----
 
 . To publish the docs using GitHub pages, enable GitHub Pages in the remote repository configuration: choose `gh-pages` as source branch, and `root` as source directory.
+
+
+. To publish the build result for the pull requests:
+
+.. Create a Netlify token `NETLIFY_AUTH_TOKEN`. See: https://app.netlify.com/user/applications/personal[Netlify - Create a new personal access token]. See: link: https://www.netlify.com/docs/cli/#obtain-a-token-in-the-netlify-ui[Obtaining a token with the UI].
+
+.. Get a Netlify site ID `NETLIFY_SITE_ID`. See: link:https://docs.netlify.com/cli/get-started/#link-with-an-environment-variable[Link with an environment variable]
+
+. Set the `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` environment variables in the remote git repository configuration (settings/secrets/actions). See: link:https://github.com/netlify/actions/tree/master/cli[Netlify GitHub Action CLI documentation]
+
 
 .Verification
 
