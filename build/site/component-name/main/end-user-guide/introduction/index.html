@@ -49,6 +49,9 @@
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="./">Introduction</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#assembly_right-after.adoc">assembly_right-after.adoc</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -93,10 +96,7 @@
 <h1 class="page">Introduction</h1>
 <h1 id="proc_starting-a-new-antora-project_context" class="sect0"><a class="anchor" href="#proc_starting-a-new-antora-project_context"></a>Starting a new Antora project</h1>
 <div class="paragraph _abstract">
-<p>Write a short introductory paragraph that provides an overview of the module.</p>
-</div>
-<div class="paragraph">
-<p>Procedure modules should include the steps that users perform and address user motivation.</p>
+<p>This procedure describes how to start an Antora website compatible with the Modular Documentation Initiative Guidelines, using the resources present in the <a href="https://github.com/themr0c/antora-for-modular-docs" class="bare">https://github.com/themr0c/antora-for-modular-docs</a></p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -109,6 +109,9 @@
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
+<li>
+<p>Download the latest archive of the template repository <a href="https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip" class="bare">https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip</a>, extract the content to a new directory, and initialize a Git repository in that directory. Alternatively, copy the content of the archive to a directory with current content you wish to build with Antora.</p>
+</li>
 <li>
 <p>Organize the content. Define the project, component and guides names. Current example defines a component <code>component-name</code> containing one guide <code>end-user-guide</code>. Create the requested directory in the <code>modules</code> directory. See <a href="https://docs.antora.org/antora/2.3/standard-directories/">Standard File and Directory Set</a></p>
 </li>
@@ -299,7 +302,7 @@ runtime:
 <div class="title">Verification</div>
 <ol class="arabic">
 <li>
-<p>Run preview on a local environment</p>
+<p>Run preview on a local environment. The build is using same container image as the che-docs project.</p>
 <div class="listingblock">
 <div class="content">
 <pre>./runnerpreview.sh</pre>
