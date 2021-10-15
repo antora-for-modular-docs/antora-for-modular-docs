@@ -98,7 +98,7 @@ $ git push
 
 .. Create a Netlify token `NETLIFY_AUTH_TOKEN`. See: https://app.netlify.com/user/applications/personal[Netlify - Create a new personal access token]. See: link: https://www.netlify.com/docs/cli/#obtain-a-token-in-the-netlify-ui[Obtaining a token with the UI].
 
-.. Get a Netlify site ID `NETLIFY_SITE_ID`. See: link:https://docs.netlify.com/cli/get-started/#link-with-an-environment-variable[Link with an environment variable]
+.. Get a Netlify site ID `NETLIFY_SITE_ID`. See: link:https://docs.netlify.com/cli/get-started/#link-with-an-environment-variable[Link with an environment variable].
 
 . Set the `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` environment variables in the remote git repository configuration (settings/secrets/actions). See: link:https://github.com/netlify/actions/tree/master/cli[Netlify GitHub Action CLI documentation]
 
