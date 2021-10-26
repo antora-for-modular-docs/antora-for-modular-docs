@@ -23,6 +23,6 @@ jobs:
         with:
           files: __onlyModified
           styles: https://github.com/vale-at-red-hat/vale-at-red-hat/releases/latest/download/RedHat.zip
-          config: https://raw.githubusercontent.com/vale-at-red-hat/vale-at-red-hat/master/.vale-for-github-action.ini
+          config: https://raw.githubusercontent.com/vale-at-red-hat/vale-at-red-hat/main/.vale-for-github-action.ini
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
