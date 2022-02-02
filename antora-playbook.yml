@@ -27,6 +27,11 @@ content:
       branches:
         - main
       edit_url: "https://github.com/themr0c/antora-for-modular-docs/edit/main/{path}"
+antora:
+  extensions:
+    - require: "@antora/lunr-extension"
+asciidoc:
+  sourcemap: true
 output:
   destinations:
     - provider: fs
@@ -40,5 +45,12 @@ ui:
 urls:
   html_extension_style: indexify
   redirect_facility: static
+  # latest_prerelease_version_segment: next
+  # latest_version_segment: stable
+  latest_version_segment_strategy: replace
 runtime:
   cache_dir: ./.cache/antora
+  fetch: true
+  log:
+    failure_level: warn
+    level: info
