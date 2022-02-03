@@ -9,25 +9,25 @@
 #
 
 # Name is reused in `publish-netlify.yml`
-name: "Build and validate pull request"
+name: Build and validate pull request
 
 on:
   - pull_request
 
 jobs:
   build:
-    name: "Build and validate pull request"
+    name: Build and validate pull request
     runs-on: ubuntu-20.04
-    container: "quay.io/eclipse/che-docs:latest"
+    container: "quay.io/antoraformodulardocs/antora-for-modular-docs:latest"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Necessary for git diff in vale step
 
-      - name: Build using antora # and fail on warning
+      - name: Build using antora
         id: antora-build
-        run: CI=true antora generate antora-playbook-for-development.yml --stacktrace 2>&1 | (tee | grep  WARNING && exit 42 || exit 0)
+        run: CI=true antora generate antora-playbook-for-development.yml
 
       - name: Upload artifact doc-content
         uses: actions/upload-artifact@v2

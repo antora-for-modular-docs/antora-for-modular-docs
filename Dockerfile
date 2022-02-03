@@ -7,6 +7,7 @@
 # THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+# Build binaries in another container
 FROM registry.access.redhat.com/ubi8/go-toolset as builder
 USER root
 
@@ -36,7 +37,8 @@ RUN wget -qO- https://github.com/errata-ai/vale/archive/v${VALE_VERSION}.tar.gz 
     &&  GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -tags closed -ldflags "-X main.date=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.version=${VALE_VERSION}" -o bin/vale ./cmd/vale \
     &&  /vale/bin/vale --version
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal
+# Prapare the container
+FROM registry.access.redhat.com/ubi8/nodejs-16
 USER root
 
 COPY --from=builder /vale/bin/vale /usr/local/bin/vale
@@ -54,12 +56,12 @@ LABEL description="Tools to build documentation using Antora for modular docs." 
     name="" \
     source="https://github.com/eclipse/che-docs/blob/main/Dockerfile" \
     summary="Tools to build documentation using Antora for modular docs" \
-    URL="quay.io/eclipse/che-docs" \
+    URL="quay.io/antoraformodulardocs/antora-for-modular-docs" \
     vendor="Antora for modular docs team" \
     version="2022.01"
 
 ARG ANTORA_VERSION=3.0.0
-RUN microdnf install \
+RUN dnf install -y \
     bash \
     curl \
     findutils \
@@ -70,11 +72,27 @@ RUN microdnf install \
     python3-pip \
     python3-wheel \
     tar \
-    && pip3 install --no-cache-dir --no-input diagrams jinja2-cli yq \
-    && node -e "fs.writeFileSync('package.json', '{}')" \
-    && npm i -D -E -g @antora/cli@3.0.0 @antora/site-generator@3.0.0 @antora/lunr-extension asciidoctor gulp gulp-connect \
-    && rm -rf /tmp/* \
-    && antora --version \
+    && pip3 install --no-cache-dir --no-input \
+    diagrams \
+    jinja2-cli \
+    yq \
+    && npm install --global \
+    @antora/cli@${ANTORA_VERSION} \
+    @antora/lunr-extension \
+    @antora/site-generator@${ANTORA_VERSION} \
+    asciidoctor \
+    gulp \
+    gulp-cli \
+    gulp-connect \
+    js-yaml
+# && useradd --create-home --uid 1001 docsbuilder
+
+ENV NODE_PATH="/opt/app-root/src/.npm-global/lib/node_modules/"
+VOLUME /projects
+WORKDIR /projects
+USER 1001
+
+RUN antora --version \
     && asciidoctor --version \
     && bash --version \
     && curl --version \
@@ -83,18 +101,6 @@ RUN microdnf install \
     && gulp --version \
     && htmltest --version \
     && jinja2 --version \
-    && jq --version \
+    && jq --version \ 
     && vale -v \
-    && yq --version
-
-# perl \
-# ShellCheck \
-# xmlstarlet \
-
-VOLUME /projects
-WORKDIR /projects
-ENV HOME="/projects" \
-    NODE_PATH="/usr/local/share/.config/yarn/global/node_modules" \
-    USER_NAME=che-docs
-
-USER 1001
+    && yq --version 

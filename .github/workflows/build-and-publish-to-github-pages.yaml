@@ -11,20 +11,21 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-name: Publish to GitHub Pages
+name: Build and publish to GitHub Pages
 on:
   push:
     branches: [main]
 jobs:
   build:
+    name: Build and publish to GitHub Pages
     runs-on: ubuntu-latest
+    container: "quay.io/antoraformodulardocs/antora-for-modular-docs:latest"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Run Antora
-        uses: kameshsampath/antora-site-action@v0.2.4
-        with:
-          antora_playbook: antora-playbook.yml
+      - name: Build using antora
+        id: antora-build
+        run: CI=true antora generate antora-playbook-for-development.yml
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

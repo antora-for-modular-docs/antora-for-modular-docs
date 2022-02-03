@@ -5,11 +5,11 @@
 // End of metadata for Antora
 :_module-type: PROCEDURE
 
-[id="proc_starting-a-new-antora-project-compatible-with-modular-documentation_{context}"]
-= Starting a new Antora project compatible with Modular Documentation
+[id="proc_starting-an-antora-project-compatible-with-modular-documentation_{context}"]
+= Starting an Antora project compatible with modular documentation
 
 [role="_abstract"]
-Starting a new Antora project compatible with Modular Documentation.
+Starting an Antora project compatible with Modular Documentation.
 
 .Prerequisites
 
@@ -17,21 +17,19 @@ Starting a new Antora project compatible with Modular Documentation.
 
 .Procedure
 
-. Create a repository using link:https://github.com/themr0c/antora-for-modular-docs/generate[the Antora for Modular Docs repository template] and clone the repository to your local environment.
-
-. Alternatively, download the https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive], decompress it, and use the content of this archive to start a new repository.
+. Create a repository by using link:https://github.com/themr0c/antora-for-modular-docs/generate[the Antora for Modular Docs repository template] and clone the repository to your local environment, or download the https://github.com/themr0c/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive], decompress it, and use the content of this archive to start a repository.
 +
 ----
 $ cd antora-for-modular-docs
 $ git init
 ----
 
-. The new repository contains:
+. The repository has:
 
 * The current documentation.
 * Antora configuration, to adapt to your needs.
-* A GitHub workflow to publish the docs using GitHub Pages.
-* A GitHub workflow to build, validate and publish a preview for pull requests.
+* A GitHub workflow to publish the docs by using GitHub Pages.
+* A GitHub workflow to build, validate, and publish a preview for pull requests.
 * Configuration to edit and build the documentation on link:https://workspaces.openshift.com[Eclipse Che hosted by Red Hat]
 * Configuration for the link:https://github.com/wjdp/htmltest[`htmltest`] link checker and other tools.
 
@@ -39,8 +37,8 @@ $ git init
 
 * Optionally, rename the `end-user-guide` directory.
 +
-TIP: Don't use the default `ROOT` module name, always use a https://docs.antora.org/antora/3.0/named-module-directory/[Named Module Directory].  
-* Optionally, add a new module directory, and create the requested subdirectories. See link:https://docs.antora.org/antora/3.0/standard-directories/[Antora - Standard File and Directory Set]. 
+TIP: Do not use the default `ROOT` module name, always use a https://docs.antora.org/antora/3.0/named-module-directory/[Named Module Directory].  
+* Optionally, add a module directory, and create the requested subdirectories. See link:https://docs.antora.org/antora/3.0/standard-directories/[Antora - Standard File and Directory Set]. 
 
 
 . Edit `antora.yml`. See link:https://docs.antora.org/antora/3.0/component-version-descriptor/[What’s antora.yml?]
@@ -96,7 +94,7 @@ $ git commit
 $ git push
 ----
 
-. To publish the docs using GitHub pages, enable GitHub Pages in the remote repository configuration: choose `gh-pages` as source branch, and `root` as source directory.
+. To publish the docs by using GitHub pages, enable GitHub Pages in the remote repository configuration: choose `gh-pages` as source branch, and `root` as source directory.
 
 
 . To publish the build result for the pull requests:
