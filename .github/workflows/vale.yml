@@ -21,8 +21,9 @@ jobs:
       - name: Vale Linter
         uses: errata-ai/vale-action@v1.4.0
         with:
-          files: __onlyModified
-          styles: https://github.com/redhat-documentation/vale-at-red-hat/releases/latest/download/RedHat.zip
           config: https://raw.githubusercontent.com/redhat-documentation/vale-at-red-hat/main/.vale-for-github-action.ini
+          files: all
+          onlyAnnotateModifiedLines: true
+          styles: https://github.com/redhat-documentation/vale-at-red-hat/releases/latest/download/RedHat.zip
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
