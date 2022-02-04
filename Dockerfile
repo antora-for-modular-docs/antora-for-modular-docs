@@ -60,7 +60,7 @@ LABEL description="Tools to build documentation using Antora for modular docs." 
     vendor="Antora for modular docs team" \
     version="2022.01"
 
-ARG ANTORA_VERSION=3.0.0
+ARG ANTORA_VERSION=3.0.1
 RUN dnf install -y \
     bash \
     curl \
@@ -76,7 +76,8 @@ RUN dnf install -y \
     diagrams \
     jinja2-cli \
     yq \
-    && npm install --global \
+    && corepack enable \
+    && yarn add \
     @antora/cli@${ANTORA_VERSION} \
     @antora/lunr-extension \
     @antora/site-generator@${ANTORA_VERSION} \
@@ -103,4 +104,5 @@ RUN antora --version \
     && jinja2 --version \
     && jq --version \ 
     && vale -v \
+    && yarn --version \
     && yq --version 
