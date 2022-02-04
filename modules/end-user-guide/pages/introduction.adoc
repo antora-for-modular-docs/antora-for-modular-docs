@@ -112,7 +112,7 @@ $ git push
 . Run preview on a local environment
 +
 ----
-./runnerpreview.sh
+./tools/runnerpreview.sh
 ----
 
 . Navigate to the remote Git repository and watch for the changes in the Actions and Pages.
