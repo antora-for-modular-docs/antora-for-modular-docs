@@ -1,9 +1,4 @@
 ---
-#
-# Configuration file for the `htmltest` tool.
-# The `htmltest` tool is validating the internal and external links on the HTML build of the documentation.
-# See: https://github.com/wjdp/htmltest
-#
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
@@ -11,10 +6,12 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
+# Configuration file for the `htmltest` tool.
+# The `htmltest` tool is validating the internal and external links on the HTML build of the documentation.
+# See: https://github.com/wjdp/htmltest
 
 DirectoryPath: build/
 OutputDir: .cache/htmltest
-CacheExpires: "12h" # Default is 2 weeks.
 ExternalTimeout: 60 # (seconds) default is 15.
 IgnoreURLs:
   - http://0.0.0.0:4000
@@ -23,3 +20,4 @@ IgnoreURLs:
   - https://github.com/antora-for-modular-docs/antora-for-modular-docs/edit/main/
   - https://github.com/antora-for-modular-docs/antora-for-modular-docs/generate
   - https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip
+

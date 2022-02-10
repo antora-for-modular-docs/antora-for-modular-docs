@@ -7,17 +7,17 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-# Add Web IDE link on PRs
-name: Try in Web IDE
+name: Add Web IDE link
 on:
   pull_request_target:
     types:
       - opened
 jobs:
-  add-link:
+  add-web-ide-link:
     runs-on: ubuntu-20.04
     steps:
-      - name: Try in Web IDE
+      - name: Add Web IDE link
+        id: try-in-web-ide
         uses: redhat-actions/try-in-web-ide@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

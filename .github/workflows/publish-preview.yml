@@ -15,7 +15,7 @@ name: Publish doc-content using netlify
 on:
   workflow_run:
     workflows:
-      - "Build and validate"
+      - "Preview build"
     types:
       - completed
 
@@ -24,20 +24,14 @@ jobs:
     name: Publish doc-content using netlify
     runs-on: ubuntu-20.04
     steps:
-      - name: Download doc-content artifact
+      - name: Download preview-build artifact
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: build
+          name: preview-build
           path: content
 
-      - name: Download pull-request-number artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: pull-request-number
-
-      - name: Set PR_NUMBER variable
+      - name: Set PR_NUMBER  and PR_SHA variables
         run: |
           pr_number=$(cat "PR_NUMBER")
           if ! [[ "$pr_number" =~ ^[0-9]+$ ]]; then
@@ -45,15 +39,6 @@ jobs:
             exit 1
           fi
           echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
-
-      - name: Download pull-request-sha artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: pull-request-sha
-
-      - name: Set PR_SHA variable
-        run: |
           pr_sha=$(cat "PR_SHA")
           echo "PR_SHA=$pr_sha" >> $GITHUB_ENV
 
