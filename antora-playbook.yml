@@ -1,11 +1,4 @@
 ---
-#
-# Antora Playbook for publication.
-#
-# Use this playbook to build the released version branch.
-#
-# See: https://docs.antora.org/antora/2.3/playbook/
-#
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
@@ -13,44 +6,47 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-site:
-  title: Antora for Modular Documentation
-  # The url property is mandatory to generate the 404 and sitemap files.
-  url: https://themr0c.github.io/antora-for-modular-docs/
-  start_page: docs::index.adoc
+# Antora Playbook building current Git HEAD.
+#
+# See: https://docs.antora.org/antora/latest/playbook/
+#
+site: # https://docs.antora.org/antora/latest/playbook/configure-site/
+  title: Antora for modular documentation # https://docs.antora.org/antora/latest/playbook/site-title/
+  url: https://antora-for-modular-docs.github.io/antora-for-modular-docs/ # https://docs.antora.org/antora/latest/playbook/site-url/
+  start_page: docs::index.adoc # https://docs.antora.org/antora/latest/playbook/site-start-page/
+  robots: allow # https://docs.antora.org/antora/latest/playbook/site-robots/
   # keys:
-  #   google_analytics: "PLACEHOLDER"
-  robots: allow
-content:
+  #   google_analytics: 'XXXX' # https://docs.antora.org/antora/latest/playbook/site-keys/
+content: # https://docs.antora.org/antora/latest/playbook/configure-content-sources/
   sources:
     - url: ./
-      branches:
-        - main
-      edit_url: "https://github.com/themr0c/antora-for-modular-docs/edit/main/{path}"
+      branches: # https://docs.antora.org/antora/latest/playbook/content-branches/#current-local-branch
+        - HEAD
+      edit_url: "https://github.com/antora-for-modular-docs/antora-for-modular-docs/edit/main/{path}" # https://docs.antora.org/antora/latest/playbook/content-edit-url/
 antora:
   extensions:
-    - require: "@antora/lunr-extension"
+    - require: "@antora/lunr-extension" # https://gitlab.com/antora/antora-lunr-extension/
 asciidoc:
-  sourcemap: true
+  sourcemap: true # https://docs.antora.org/antora/latest/playbook/asciidoc-sourcemap/
 output:
   destinations:
     - provider: fs
       clean: true
-      path: build/site
-ui:
-  bundle:
+      path: build/antora-for-modular-docs/
+ui: # https://docs.antora.org/antora/latest/playbook/configure-ui/
+  bundle: # https://docs.antora.org/antora/latest/playbook/ui-bundle-url/
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
-  supplemental_files: ./supplemental-ui
-urls:
-  html_extension_style: indexify
-  redirect_facility: static
-  # latest_prerelease_version_segment: next
-  # latest_version_segment: stable
-  latest_version_segment_strategy: replace
+  supplemental_files: ./supplemental-ui # https://docs.antora.org/antora/latest/playbook/ui-bundle-url/
+urls: # https://docs.antora.org/antora/latest/playbook/configure-urls/
+  html_extension_style: indexify # https://docs.antora.org/antora/latest/playbook/urls-html-extension-style/
+  redirect_facility: static # https://docs.antora.org/antora/latest/playbook/urls-redirect-facility/
+  # latest_prerelease_version_segment: next # https://docs.antora.org/antora/latest/playbook/urls-latest-prerelease-version-segment/
+  # latest_version_segment: stable # https://docs.antora.org/antora/latest/playbook/urls-latest-version-segment/
+  latest_version_segment_strategy: replace # https://docs.antora.org/antora/latest/playbook/urls-latest-version-segment-strategy/
 runtime:
-  cache_dir: ./.cache/antora
-  fetch: true
+  cache_dir: ./.cache/antora # https://docs.antora.org/antora/latest/playbook/runtime-cache-dir/
+  fetch: true # https://docs.antora.org/antora/latest/playbook/runtime-cache-dir/
   log:
-    failure_level: warn
-    level: info
+    failure_level: warn # https://docs.antora.org/antora/latest/playbook/runtime-log-failure-level/
+    level: info # https://docs.antora.org/antora/latest/playbook/runtime-log-level/

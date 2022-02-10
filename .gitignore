@@ -10,5 +10,7 @@
 #
 
 .cache
+.github/styles
+.vale.ini
 build
 workspace.code-workspace

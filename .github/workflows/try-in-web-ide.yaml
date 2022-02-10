@@ -9,18 +9,15 @@
 #
 # Add Web IDE link on PRs
 name: Try in Web IDE
-
 on:
   pull_request_target:
     types:
       - opened
-
 jobs:
   add-link:
     runs-on: ubuntu-20.04
     steps:
       - name: Try in Web IDE
-        id: try-in-web-ide
         uses: redhat-actions/try-in-web-ide@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

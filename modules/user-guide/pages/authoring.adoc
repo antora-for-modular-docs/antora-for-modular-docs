@@ -1,0 +1,32 @@
+:_module-type: REFERENCE
+:description: Authoring guidelines for an Antora project compatible with modular documentation
+:keywords: introduction, antora, modular documentation
+:navtitle: Authoring guidelines
+:page-aliases: 
+
+[id="authoring-guidelines-for-an-antora-project-compatible-with-modular-documentation_{context}"]
+= Authoring guidelines for an Antora project compatible with modular documentation
+
+[role="_abstract"]
+Starting an Antora project compatible with Modular Documentation.
+
+
+.Modules
+
+The example defines an unique module: `user-guide`.
+
+Optionally, rename it. Do not use the default `ROOT` module name, always use a https://docs.antora.org/antora/latest/named-module-directory/[Named Module Directory]. 
+
+Optionally, add a module directory, create the required subdirectories and navigation file, and add the navigation file to the `antora.yml` file. See link:https://docs.antora.org/antora/latest/standard-directories/[Antora - Standard File and Directory Set]. 
+
+.File names, IDs, and titles
+
+Use a consistent system for file names, IDs, and titles. See link:https://redhat-documentation.github.io/modular-docs/#module_anchor-and-file-names-concept[File Names and Anchors].
+
+[role="_additional-resources"]
+.Additional resources
+
+* link:https://docs.antora.org/[Antora documentation]
+* link:https://redhat-documentation.github.io/modular-docs/[Modular Documentation Reference Guide].
+
+

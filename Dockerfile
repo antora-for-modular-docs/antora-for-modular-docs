@@ -1,13 +1,14 @@
-# Copyright © 2022 Red Hat, Inc.
-
-# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Container definition
+#
+# Copyright (c) 2022 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
 #
 
-# Build binaries in another container
+# Build binaries in a temporary container
 FROM registry.access.redhat.com/ubi8/go-toolset as builder
 USER root
 
@@ -26,7 +27,7 @@ RUN wget -qO- https://github.com/wjdp/htmltest/archive/refs/tags/v${HTMLTEST_VER
 
 # Build vale
 WORKDIR /vale
-ARG VALE_VERSION=2.14.0
+ARG VALE_VERSION=2.15.0
 RUN wget -qO- https://github.com/errata-ai/vale/archive/v${VALE_VERSION}.tar.gz | tar --strip-components=1 -zxvf - \
     &&  export ARCH="$(uname -m)" \
     &&  if [[ ${ARCH} == "x86_64" ]]; \
@@ -37,12 +38,17 @@ RUN wget -qO- https://github.com/errata-ai/vale/archive/v${VALE_VERSION}.tar.gz 
     &&  GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -tags closed -ldflags "-X main.date=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.version=${VALE_VERSION}" -o bin/vale ./cmd/vale \
     &&  /vale/bin/vale --version
 
-# Prapare the container
+# Download shellcheck
+ARG SHELLCHECK_VERSION=0.8.0
+RUN wget -qO- https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.$(uname -m).tar.xz | tar -C /usr/local/bin/ --no-anchored 'shellcheck' --strip=1 -xJf -
+
+# Prepare the container
 FROM registry.access.redhat.com/ubi8/nodejs-16
 USER root
 
 COPY --from=builder /vale/bin/vale /usr/local/bin/vale
 COPY --from=builder /htmltest/bin/htmltest /usr/local/bin/htmltest
+COPY --from=builder /usr/local/bin/shellcheck /usr/local/bin/shellcheck
 
 EXPOSE 4000
 EXPOSE 35729
@@ -64,6 +70,7 @@ ARG ANTORA_VERSION=3.0.1
 RUN dnf install -y \
     bash \
     curl \
+    file \
     findutils \
     git-core \
     grep \
@@ -72,12 +79,14 @@ RUN dnf install -y \
     python3-pip \
     python3-wheel \
     tar \
+    unzip \
+    wget \
+    && dnf clean all \
     && pip3 install --no-cache-dir --no-input \
     diagrams \
     jinja2-cli \
     yq \
-    && corepack enable \
-    && yarn add \
+    && npm install -g  \
     @antora/cli@${ANTORA_VERSION} \
     @antora/lunr-extension \
     @antora/site-generator@${ANTORA_VERSION} \
@@ -85,8 +94,10 @@ RUN dnf install -y \
     gulp \
     gulp-cli \
     gulp-connect \
-    js-yaml
-# && useradd --create-home --uid 1001 docsbuilder
+    js-yaml \
+    && npm cache clean --force \
+    && rm /tmp/* -rfv \
+    && corepack enable 
 
 ENV NODE_PATH="/opt/app-root/src/.npm-global/lib/node_modules/"
 VOLUME /projects

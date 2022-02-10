@@ -1,0 +1,68 @@
+:_module-type: PROCEDURE
+:keywords: introduction, antora, modular documentation
+:navtitle: Introduction
+:page-aliases: end-user-guide:introduction
+
+[id="proc_starting-an-antora-project-compatible-with-modular-documentation_{context}"]
+= Starting an Antora project compatible with modular documentation
+
+[role="_abstract"]
+Starting an Antora project compatible with Modular Documentation.
+
+.Prerequisites
+
+* Docker or Podman.
+
+.Procedure
+
+. Create a repository by using link:https://github.com/antora-for-modular-docs/antora-for-modular-docs/generate[the Antora for Modular Docs repository template] and clone the repository to your local environment, or download the https://github.com/antora-for-modular-docs/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive], and use the content of this archive to start a repository. The repository has user documentation and configuration files to:
+* Build the documentation with Antora
+* Validate internal and external links with link:https://github.com/wjdp/htmltest[`htmltest`]
+* Validate language changes with link:https://redhat-documentation.github.io/vale-at-red-hat/[Vale and the Red Hat style]
+* Publish a preview
+* Edit and build the documentation on link:https://workspaces.openshift.com[Eclipse Che hosted by Red Hat]
+* Automate workflows and publish on GitHub
+
+. Edit at least the `title` field in `antora.yml`. See link:https://docs.antora.org/antora/latest/component-version-descriptor/[What’s antora.yml? - Antora documentation].
+
+. Edit at least the `title`, `url`, `edit_url`, `output.destination.path` fields in `antora-playbook.yml`. `output.destination.path` must match the __<location>__ in the `url` (https://__<FQDN>__/__<location>__). See link:https://docs.antora.org/antora/latest/playbook/set-up-playbook/[Set up a playbook - Antora documentation].
+
+. Edit the repository URL in the `supplemental-ui/partials/header-content.hbs` file and in the `IgnoreURLs` list in the `.htmltest.yml` file.
+
+. Run the preview on a local environment and verify the output on the preview server: link:http://0.0.0.0:4000[].
++
+----
+./tools/runnerpreview.sh
+----
+
+. Create an initial commit containing the result and publish to your remote Git repository.
+
+. To publish the docs by using GitHub pages, enable GitHub Pages in the remote repository configuration: choose `gh-pages` as source branch, and `root` as source directory.
+
+
+. To publish the build result for the pull requests:
+
+.. Create a token `NETLIFY_AUTH_TOKEN`. See: https://app.netlify.com/user/applications/personal[Netlify - Create a new personal access token]. See: link: https://www.netlify.com/docs/cli/#obtain-a-token-in-the-netlify-ui[Obtaining a token with the UI].
+
+.. Get a site ID `NETLIFY_SITE_ID`. See: link:https://docs.netlify.com/cli/get-started/#link-with-an-environment-variable[Link with an environment variable].
+
+. Set the `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` environment variables in the remote Git repository configuration (*settings > secrets> actions*). See: link:https://github.com/netlify/actions/tree/master/cli[Netlify GitHub Action CLI documentation]
+
+
+.Verification
+
+
+. Run preview on a local environment
++
+----
+./tools/runnerpreview.sh
+----
+
+. Navigate to the remote Git repository and watch for the changes in the Actions and Pages.
+
+[role="_additional-resources"]
+.Additional resources
+
+* link:https://docs.antora.org/[Antora documentation]
+* link:https://redhat-documentation.github.io/modular-docs/[Modular Documentation Reference Guide].
+* xref:authoring.adoc[]
