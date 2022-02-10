@@ -14,7 +14,8 @@
 name: Build and publish to GitHub Pages
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 jobs:
   build:
     name: Build and publish to GitHub Pages
@@ -24,10 +25,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Build using antora
-        id: antora-build
-        run: CI=true antora generate antora-playbook-for-development.yml
-      - name: Publish to GitHub Pages
+        run: CI=true antora generate antora-playbook.yml
+      - name: Commit artifact to publication branch
         uses: peaceiris/actions-gh-pages@v3
         with:
+          force_orphan: true # publish branch with only the latest commit
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/site
+          publish_branch: gh-pages
+          publish_dir: build/antora-for-modular-docs

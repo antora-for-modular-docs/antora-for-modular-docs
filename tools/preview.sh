@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 #
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
@@ -8,7 +8,10 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-# Fail on errors and display commands
-set -ex
+# Fail on errors
+set -e
 
+umask 002
+
+./tools/get-vale-styles.sh
 LIVERELOAD=true gulp

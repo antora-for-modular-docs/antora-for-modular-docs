@@ -16,12 +16,21 @@ elif command -v docker > /dev/null
 else echo "No installation of podman or docker found in the PATH" ; exit 1
 fi
 
-# Fail on errors and display commands
-set -ex
+# Fail on errors
+set -e
 
+# Set the IMAGE environment variable to override the default
+if [ -z "$IMAGE" ]
+then
+  IMAGE="quay.io/antoraformodulardocs/antora-for-modular-docs"
+  ${RUNNER} pull -q ${IMAGE}
+fi
+
+# Display command
+set -x
 ${RUNNER} run --rm -ti \
   --name "${PWD##*/}" \
   -v "$PWD:/projects:z" -w /projects \
-  --entrypoint="./tools/preview.sh" \
   -p 4000:4000 -p 35729:35729 \
-  "quay.io/antoraformodulardocs/antora-for-modular-docs"
+  --entrypoint="./tools/preview.sh" \
+  "${IMAGE}"

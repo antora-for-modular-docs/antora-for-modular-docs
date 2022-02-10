@@ -1,9 +1,4 @@
 ---
-#
-# Antora component version descriptor.
-#
-# See: https://docs.antora.org/antora/2.3/component-version-descriptor/
-#
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
@@ -11,18 +6,20 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-name: docs
-title: Antora for Modular Documentation
-version: master # Define a Component Version with No Version
-display_version: main
-start_page: end-user-guide:introduction.adoc
-nav:
-  - modules/end-user-guide/nav.adoc
+# Antora component version descriptor.
+# See https://docs.antora.org/antora/latest/component-version-descriptor/
+#
+name: docs # https://docs.antora.org/antora/latest/component-name-key/
+title: Antora for Modular Documentation # https://docs.antora.org/antora/latest/component-title/
+version: ~ # https://docs.antora.org/antora/latest/component-with-no-version/
+display_version: main # https://docs.antora.org/antora/latest/component-display-version/
+prerelease: false # https://docs.antora.org/antora/latest/component-prerelease/
+start_page: user-guide:introduction.adoc # https://docs.antora.org/antora/latest/component-start-page/
+nav: # https://docs.antora.org/antora/latest/component-navigation/
+  - modules/user-guide/nav.adoc
 asciidoc:
-  attributes:
+  attributes: # https://docs.antora.org/antora/latest/component-attributes/
     # for antora
     experimental: ""
-    favicon: favicon.png
     icons: font
-    # for the project
-    context: docs
+    context: docs # https://redhat-documentation.github.io/modular-docs/#module_anchor-and-file-names-concept

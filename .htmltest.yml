@@ -12,10 +12,14 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-DirectoryPath: build/site/ # Not build/site to avoid false positives on 404.html
+DirectoryPath: build/
 OutputDir: .cache/htmltest
 CacheExpires: "12h" # Default is 2 weeks.
 ExternalTimeout: 60 # (seconds) default is 15.
 IgnoreURLs:
+  - http://0.0.0.0:4000
+  - https://antora-for-modular-docs.github.io/antora-for-modular-docs/
   - https://cse.google.com/cse.js
-  - https://github.com/themr0c/antora-for-modular-docs/generate
+  - https://github.com/antora-for-modular-docs/antora-for-modular-docs/edit/main/
+  - https://github.com/antora-for-modular-docs/antora-for-modular-docs/generate
+  - https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip

@@ -17,9 +17,9 @@ const { reload: livereload } = process.env.LIVERELOAD === 'true' ? require('gulp
 const { parallel, series, src, watch } = require('gulp')
 const yaml = require('js-yaml')
 
-const playbookFilename = 'antora-playbook-for-development.yml'
+const playbookFilename = 'antora-playbook.yml'
 const playbook = yaml.load(fs.readFileSync(playbookFilename, 'utf8'))
-const outputDir = (playbook.output || {}).dir || './build/site'
+const outputDir = (playbook.output || {}).dir || './build'
 const serverConfig = { name: 'Preview Site', livereload, host: '0.0.0.0', port: 4000, root: outputDir }
 const antoraArgs = ['--playbook', playbookFilename]
 const watchPatterns = playbook.content.sources.filter((source) => !source.url.includes(':')).reduce((accum, source) => {
@@ -40,29 +40,49 @@ function generate(done) {
 async function serve(done) {
     connect.server(serverConfig, function () {
         this.server.on('close', done)
-        watch(watchPatterns, series(generate, testhtml))
+        watch(watchPatterns, series(generate, validate_shell_scripts, validate_language_changes, validate_links))
         if (livereload) watch(this.root).on('change', (filepath) => src(filepath, { read: false }).pipe(livereload()))
     })
 }
 
-
-async function testhtml() {
+async function validate_language_changes() {
     // Report links errors but don't make gulp fail.
     try {
-        const { stdout, stderr } = await exec('htmltest')
-        console.log(stdout);
-        console.error(stderr);
+        const { stdout, stderr } = await exec('./tools/validate-language-changes.sh 2>&1')
+        console.log(stdout, stderr);
     }
     catch (error) {
-        console.log(error.stdout);
-        console.log(error.stderr);
+        console.log(error.stdout, error.stderr);
         return;
     }
 }
 
+async function validate_links() {
+    // Report links errors but don't make gulp fail.
+    try {
+        const { stdout, stderr } = await exec('htmltest 2>&1')
+        console.log(stdout, stderr);
+    }
+    catch (error) {
+        console.log(error.stdout, error.stderr);
+        return;
+    }
+}
+
+async function validate_shell_scripts() {
+    // Report shellcheck errors but don't make gulp fail.
+    try {
+        const { stdout, stderr } = await exec('./tools/validate-shell-scripts.sh 2>&1')
+        console.log(stdout, stderr);
+    }
+    catch (error) {
+        console.log(error.stdout, error.stderr);
+        return;
+    }
+}
 
 exports.default = series(
     generate,
     serve,
-    parallel(testhtml)
+    parallel(validate_language_changes, validate_links, validate_shell_scripts)
 );
