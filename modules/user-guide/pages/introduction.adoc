@@ -66,3 +66,7 @@ Starting an Antora project compatible with Modular Documentation.
 * link:https://docs.antora.org/[Antora documentation]
 * link:https://redhat-documentation.github.io/modular-docs/[Modular Documentation Reference Guide].
 * xref:authoring.adoc[]
+* image:https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs/status["Docker Repository on Quay", link="https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs"]
+* image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/build-and-validate.yaml/badge.svg[Build and validate,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/build-and-validate.yaml]
+* image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/build-and-publish-to-github-pages.yaml/badge.svg[Build and publish to GitHub Pages,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/build-and-publish-to-github-pages.yaml]
+* image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment/badge.svg[Pages deployment,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment]
