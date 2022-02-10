@@ -1,9 +1,4 @@
 ---
-#
-# Build and publish to GitHub Pages
-#
-# See: https://docs.antora.org/antora/2.3/publish-to-github-pages/
-#
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
@@ -11,25 +6,30 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-name: Build and publish to GitHub Pages
+name: Build and publish to publication branch
 on:
   push:
     branches:
       - main
+  # Reusable workflow. Called on push on the content branches.
+  workflow_call:
+    # secrets:
+    #   GITHUB_TOKEN:
+    #     required: true
 jobs:
-  build:
-    name: Build and publish to GitHub Pages
+  publication-builder:
+    name: Build and publish to publication branch
     runs-on: ubuntu-latest
     container: "quay.io/antoraformodulardocs/antora-for-modular-docs:latest"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Build using antora
-        run: CI=true antora generate antora-playbook.yml
+      - name: Build
+        run: tools/publication-builder.sh
       - name: Commit artifact to publication branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           force_orphan: true # publish branch with only the latest commit
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
+          publish_branch: publication
           publish_dir: build/antora-for-modular-docs

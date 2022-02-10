@@ -10,8 +10,9 @@
 
 # Fail on errors
 set -e
-
+# Enable user to delete created files afterwards
 umask 002
-
+# Get Vale styles
 ./tools/get-vale-styles.sh
+# Build
 LIVERELOAD=true gulp

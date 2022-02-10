@@ -13,19 +13,20 @@
 # 2. Prepare the preview publication
 # 3. Validate the internal and external links
 
-name: Build and validate # referenced in `publish-preview.yml`
+name: Preview build
 on:
   - pull_request
   - push
 jobs:
-  build:
-    name: Build and validate
-    runs-on: ubuntu-20.04
+  preview-build:
+    name: Preview build
+    runs-on: ubuntu-latest
     container: "quay.io/antoraformodulardocs/antora-for-modular-docs:latest"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0 # enable git diff and building many branches
       # Cache for Antora UI and Htmltest.
       # See: https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows
@@ -45,25 +46,21 @@ jobs:
         with:
           path: .cache
           key: ${{ steps.get-date.outputs.yearweek }}
-      - name: Build with antora
-        run: CI=true antora generate antora-playbook.yml
-      - name: Upload artifact doc-content
-        uses: actions/upload-artifact@v2
-        with:
-          name: doc-content
-          path: build
-      - name: Store pull request details for publish-netlify
+      - name: Build
+        run: tools/publication-builder.sh
+      - name: Store pull request details for preview-publish
         run: |
           echo "${{ github.event.number }}" > PR_NUMBER
           echo "${{ github.event.pull_request.head.sha }}" > PR_SHA
-      - name: Upload artifact doc-content
+      - name: Upload preview-build artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build
+          name: preview-build
           path: |
             build
             PR_NUMBER
             PR_SHA
+          retention-days: 7
       - name: Validate internal and external links
         run: htmltest
       - name: Validate language changes
