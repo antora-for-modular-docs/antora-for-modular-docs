@@ -6,7 +6,7 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-name: Build and publish to publication branch
+name: Publication build
 on:
   # Reusable workflow. Called on push on the content branches.
   workflow_call:
