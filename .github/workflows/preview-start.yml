@@ -6,10 +6,11 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-name: Preview start
+name: Preview sticky comment
 on: pull_request_target
 jobs:
   preview:
+    name: Preview sticky comment
     runs-on: ubuntu-latest
     steps:
       - name: create

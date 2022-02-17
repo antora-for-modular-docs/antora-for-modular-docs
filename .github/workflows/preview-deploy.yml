@@ -11,12 +11,13 @@ name: Preview deploy
 on:
   workflow_run:
     workflows:
-      - "Preview build"
+      - Preview build
     types:
       - completed
 
 jobs:
   success:
+    name: Preview deploy on success
     runs-on: ubuntu-latest
     if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
     steps:
@@ -25,17 +26,28 @@ jobs:
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: preview-build
-
       - name: Save the pull request ID
         id: pr
-        run: echo "::set-output name=id::$(<PR_NUMBER)"
-
-      - name: Upload on Surge
-        id: deploy
         run: |
-          export DEPLOY_DOMAIN=https://devfile-docs-preview-pr-${{ steps.pr.outputs.id }}.surge.sh
+          pr_number=$(cat "PR_NUMBER")
+          if ! [[ "$pr_number" =~ ^[0-9]+$ ]]; then
+            echo "pr number invalid"
+            exit 1
+          fi
+          echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
+          pr_sha=$(cat "PR_SHA")
+          echo "PR_SHA=$pr_sha" >> $GITHUB_ENV
+      - name: Deploy
+        id: deploy
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          export DEPLOY_DOMAIN=https://docs-preview-pr-${{ PR_NUMBER }}.surge.sh
+          echo "DEPLOY_DOMAIN=$DEPLOY_DOMAIN" >> $GITHUB_ENV
           npx surge --project build/ --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}
-
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "16"
       - name: Update status Comment
         uses: actions-cool/maintain-one-comment@v1.1.0
         with:
@@ -58,6 +70,7 @@ jobs:
           number: ${{ steps.pr.outputs.id }}
 
   failed:
+    name: Preview deploy on failed
     runs-on: ubuntu-latest
     if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'failure'
     steps:
