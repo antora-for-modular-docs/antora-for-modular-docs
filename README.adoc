@@ -2,7 +2,6 @@
 
 Template repository to start an Antora project compatible with Modular Documentation guidelines. 
 
-
 * link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs].
 * image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yml/badge.svg[Preview build,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yaml]
 *  image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yml/badge.svg[Publication builder,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yaml]
