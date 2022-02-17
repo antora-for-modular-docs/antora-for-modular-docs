@@ -17,5 +17,5 @@ jobs:
   call-publication-builder:
     name: "Call publication builder"
     uses: antora-for-modular-docs/antora-for-modular-docs/.github/workflows/publication-builder.yml@main
-    secrets:
-      CHE_BOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # secrets:
+    # CHE_BOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
