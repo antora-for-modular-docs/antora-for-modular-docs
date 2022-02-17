@@ -9,17 +9,18 @@
 # Antora component version descriptor.
 # See https://docs.antora.org/antora/latest/component-version-descriptor/
 #
-name: docs # https://docs.antora.org/antora/latest/component-name-key/
-title: Antora for Modular Documentation # https://docs.antora.org/antora/latest/component-title/
-version: ~ # https://docs.antora.org/antora/latest/component-with-no-version/
-display_version: main # https://docs.antora.org/antora/latest/component-display-version/
-prerelease: false # https://docs.antora.org/antora/latest/component-prerelease/
-start_page: user-guide:introduction.adoc # https://docs.antora.org/antora/latest/component-start-page/
-nav: # https://docs.antora.org/antora/latest/component-navigation/
+name: docs
+title: Antora for Modular Documentation
+version: ~
+display_version: main
+prerelease: false
+start_page: user-guide:introduction.adoc
+nav:
   - modules/user-guide/nav.adoc
 asciidoc:
-  attributes: # https://docs.antora.org/antora/latest/component-attributes/
+  attributes:
     # for antora
     experimental: ""
     icons: font
+    # for modular docs
     context: docs # https://redhat-documentation.github.io/modular-docs/#module_anchor-and-file-names-concept

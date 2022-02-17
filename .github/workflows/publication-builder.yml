@@ -20,11 +20,11 @@ jobs:
   publication-builder:
     name: Build and publish to publication branch
     runs-on: ubuntu-latest
-    container: "quay.io/antoraformodulardocs/antora-for-modular-docs:latest"
+    container: quay.io/antoraformodulardocs/antora-for-modular-docs:main
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Build
+      - name: Build using antora
         run: tools/publication-builder.sh
       - name: Commit artifact to publication branch
         uses: peaceiris/actions-gh-pages@v3

@@ -7,7 +7,7 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-name: Add Web IDE link
+name: Add web IDE link
 on:
   pull_request_target:
     types:

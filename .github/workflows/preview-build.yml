@@ -21,7 +21,7 @@ jobs:
   preview-build:
     name: Preview build
     runs-on: ubuntu-latest
-    container: "quay.io/antoraformodulardocs/antora-for-modular-docs:latest"
+    container: quay.io/antoraformodulardocs/antora-for-modular-docs:main
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
