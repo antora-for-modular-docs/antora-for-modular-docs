@@ -8,9 +8,6 @@
 #
 name: Build and publish to publication branch
 on:
-  push:
-    branches:
-      - main
   # Reusable workflow. Called on push on the content branches.
   workflow_call:
     # secrets:
