@@ -26,23 +26,20 @@ jobs:
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: preview-build
-      - name: Save the pull request ID
-        id: pr
+      - name: Deploy
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           pr_number=$(cat "PR_NUMBER")
           if ! [[ "$pr_number" =~ ^[0-9]+$ ]]; then
-            echo "pr number invalid"
+            echo "invalid pull request number"
             exit 1
           fi
           echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
           pr_sha=$(cat "PR_SHA")
           echo "PR_SHA=$pr_sha" >> $GITHUB_ENV
-      - name: Deploy
-        id: deploy
-        env:
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: |
-          export DEPLOY_DOMAIN=https://docs-preview-pr-${{ PR_NUMBER }}.surge.sh
+          # DEPLOY_DOMAIN=${{ env.GITHUB_REPOSITORY }}
+          export DEPLOY_DOMAIN=antora-for-modular-docs.surge.sh
           echo "DEPLOY_DOMAIN=$DEPLOY_DOMAIN" >> $GITHUB_ENV
           npx surge --project build/ --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}
       - uses: actions/setup-node@v2-beta

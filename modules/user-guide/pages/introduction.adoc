@@ -39,14 +39,12 @@ Starting an Antora project compatible with Modular Documentation.
 
 . To publish the docs by using GitHub pages, enable GitHub Pages in the remote repository configuration: choose `gh-pages` as source branch, and `root` as source directory.
 
-
-. To publish the build result for the pull requests:
-
-.. Create a token `NETLIFY_AUTH_TOKEN`. See: https://app.netlify.com/user/applications/personal[Netlify - Create a new personal access token]. See: link: https://www.netlify.com/docs/cli/#obtain-a-token-in-the-netlify-ui[Obtaining a token with the UI].
-
-.. Get a site ID `NETLIFY_SITE_ID`. See: link:https://docs.netlify.com/cli/get-started/#link-with-an-environment-variable[Link with an environment variable].
-
-. Set the `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` environment variables in the remote Git repository configuration (*settings > secrets> actions*). See: link:https://github.com/netlify/actions/tree/master/cli[Netlify GitHub Action CLI documentation]
+. To publish the build result for the pull requests, create a token and set the `SURGE_TOKEN` environment variable in the remote Git repository secrets (*Settings > Secrets > Actions*).
++
+----
+$ npm install surge
+$ surge token
+----
 
 
 .Verification
