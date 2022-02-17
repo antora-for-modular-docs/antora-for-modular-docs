@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "::set-output name=pr_number::$(<PR_NUMBER)"
           echo "::set-output name=pr_sha::$(<PR_SHA)"
-          echo "::set-output name=deploy_domain::$(cat ${{ env.GITHUB_REPOSITORY }} | sed s#/#-# )"
+          echo "::set-output name=deploy_domain::$(cat ${{ github.repository }} | sed s#/#-# )"
           npx surge --project build/ --domain ${{ steps.deploy.outputs.deploy_domain }} --token ${{ secrets.SURGE_TOKEN }}
       - name: Update status Comment
         uses: actions-cool/maintain-one-comment@v1.1.0
