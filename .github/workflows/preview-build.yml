@@ -16,7 +16,6 @@
 name: Preview build
 on:
   - pull_request
-  - push
 jobs:
   preview-build:
     name: Preview build
