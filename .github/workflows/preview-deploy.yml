@@ -30,7 +30,7 @@ jobs:
           echo "::set-output name=pr_number::$(<PR_NUMBER)"
           echo "::set-output name=pr_sha::$(<PR_SHA)"
           echo "::set-output name=deploy_domain::$(echo ${{ github.repository }}-$(<PR_NUMBER).surge.sh | sed s#/#-#)"
-          echo "::set-output name=project::$(grep path: antora-playbook.yml | cut -d: -f2)"
+          echo "::set-output name=project::$(find build/ -mindepth 1 -maxdepth 1  -type d)"
       - name: Deploy
         id: deploy
         env:
