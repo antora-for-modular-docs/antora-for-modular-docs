@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "::set-output name=pr_number::$(<PR_NUMBER)"
           echo "::set-output name=pr_sha::$(<PR_SHA)"
-          echo "::set-output name=deploy_domain::$(echo ${{ github.repository/\//# }}-${{ steps.deploy.outputs.pr_number }}.surge.sh )"
+          echo "::set-output name=deploy_domain::$(echo ${{ github.repository }}-${{ steps.deploy.outputs.pr_number }}.surge.sh | sed s#/#-#)"
           npx surge --project build/ --domain ${{ steps.deploy.outputs.deploy_domain }} --token ${{ secrets.SURGE_TOKEN }}
       - name: Update status Comment
         uses: actions-cool/maintain-one-comment@v1.1.0
@@ -52,7 +52,6 @@ jobs:
             <!-- Sticky Pull Request Comment -->
           body-include: "<!-- Sticky Pull Request Comment -->"
           number: ${{ steps.deploy.outputs.pr_number }}
-
   failed:
     name: Preview deploy on failed
     runs-on: ubuntu-latest
@@ -63,11 +62,9 @@ jobs:
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: preview-build
-
       - name: Save the PR ID
         id: pr
         run: echo "::set-output name=id::$(<PR_NUMBER)"
-
       - name: Job failure
         uses: actions-cool/maintain-one-comment@v1.1.0
         with:
