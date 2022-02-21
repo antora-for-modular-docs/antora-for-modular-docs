@@ -23,8 +23,8 @@ content:
         - v*
       edit_url: "https://github.com/antora-for-modular-docs/antora-for-modular-docs/edit/main/{path}"
 antora:
-  extensions: # https://docs.antora.org/antora/latest/extend/register-extension/
-    - require: "@antora/lunr-extension"
+  extensions:
+    - require: "@antora/lunr-extension" # https://gitlab.com/antora/antora-lunr-extension/
 asciidoc:
   attributes:
     context: docs
@@ -51,3 +51,4 @@ runtime:
     format: pretty
   fetch: true
   cache_dir: ./.cache/antora
+

@@ -13,5 +13,5 @@ set -e
 umask 002
 # Display commands
 set -x
-# Build
+# Build Antora website
 CI=true antora generate antora-playbook.yml

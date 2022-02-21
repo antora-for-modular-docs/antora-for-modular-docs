@@ -14,5 +14,5 @@ set -e
 umask 002
 # Get Vale styles
 ./tools/get-vale-styles.sh
-# Build
+# Build Antora website
 LIVERELOAD=true gulp
