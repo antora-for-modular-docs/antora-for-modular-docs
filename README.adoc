@@ -1,6 +1,6 @@
 # link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs]
 
-Template repository to start an Antora project compatible with Modular Documentation guidelines. 
+Template repository to start an Antora project compatible with Modular Docs guidelines. 
 
 * link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs].
 * image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yml/badge.svg[Preview build,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yaml]
@@ -8,4 +8,4 @@ Template repository to start an Antora project compatible with Modular Documenta
 * image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment/badge.svg[Pages deployment,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment]
 * image:https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs/status["Docker Repository on Quay", link="https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs"]
 * link:https://docs.antora.org/antora/latest/[Antora documentation]
-* link:https://redhat-documentation.github.io/modular-docs/[Modular documentation reference guide]
+* link:https://redhat-documentation.github.io/modular-docs/[Modular docs reference guide]
