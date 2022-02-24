@@ -39,7 +39,7 @@ Starting an Antora project compatible with Modular Documentation.
 
 . To publish the docs by using GitHub pages, enable GitHub Pages in the remote repository configuration: choose `gh-pages` as source branch, and `root` as source directory.
 
-. To publish the build result for the pull requests, create a token and set the `SURGE_TOKEN` environment variable in the remote Git repository secrets (*Settings > Secrets > Actions*).
+. To publish the build result for the pull requests, create a Surge token and set the `SURGE_TOKEN` environment variable in the remote Git repository secrets (*Settings > Secrets > Actions*).
 +
 ----
 $ npx -y surge token
