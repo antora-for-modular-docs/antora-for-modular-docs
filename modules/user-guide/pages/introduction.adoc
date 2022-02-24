@@ -42,8 +42,7 @@ Starting an Antora project compatible with Modular Documentation.
 . To publish the build result for the pull requests, create a token and set the `SURGE_TOKEN` environment variable in the remote Git repository secrets (*Settings > Secrets > Actions*).
 +
 ----
-$ npm install surge
-$ surge token
+$ npx -y surge token
 ----
 
 
