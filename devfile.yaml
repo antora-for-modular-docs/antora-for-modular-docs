@@ -31,7 +31,7 @@ components:
       - name: Open-Preview-server
         port: 4000
         attributes:
-          path: /che-7/overview/introduction-to-eclipse-che/
+          path: /docs/
   - alias: asciidoctor
     type: chePlugin
     reference: https://che-plugin-registry-main.surge.sh/v3/plugins/joaompinto/asciidoctor-vscode/latest/meta.yaml

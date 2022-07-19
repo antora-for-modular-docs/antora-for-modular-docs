@@ -23,13 +23,13 @@ Starting an Antora project compatible with Modular Documentation.
 * Edit and build the documentation on link:https://workspaces.openshift.com[Eclipse Che hosted by Red Hat]
 * Automate workflows and publish on GitHub
 
-. Edit at least the `title` field in `antora.yml`. See link:https://docs.antora.org/antora/latest/component-version-descriptor/[What’s antora.yml? - Antora documentation].
+. Edit the `title` field in `antora.yml` according to your project. See link:https://docs.antora.org/antora/latest/component-version-descriptor/[What’s antora.yml? - Antora documentation].
 
-. Edit at least the `title`, `url`, `edit_url`, `output.destination.path` fields in `antora-playbook.yml`. `output.destination.path` must match the __<location>__ in the `url` (https://__<FQDN>__/__<location>__). See link:https://docs.antora.org/antora/latest/playbook/set-up-playbook/[Set up a playbook - Antora documentation].
+. Edit at least the `site.title`, `site.url`, and `content.sources.edit_url` fields in `antora-playbook.yml` according to your project. See link:https://docs.antora.org/antora/latest/playbook/set-up-playbook/[Set up a playbook - Antora documentation].
 
 . Edit the repository URL in the `supplemental-ui/partials/header-content.hbs` file and in the `IgnoreURLs` list in the `.htmltest.yml` file.
 
-. Run the preview on a local environment and verify the output on the preview server: link:http://0.0.0.0:4000[].
+. Run the preview on a local environment and verify the output on the preview server: link:http://0.0.0.0:4000[]:
 +
 ----
 ./tools/runnerpreview.sh
