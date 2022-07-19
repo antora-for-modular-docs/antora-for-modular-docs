@@ -23,12 +23,12 @@ const outputDir = (playbook.output || {}).dir || './build'
 const serverConfig = { name: 'Preview Site', livereload, host: '0.0.0.0', port: 4000, root: outputDir }
 const antoraArgs = ['--playbook', playbookFilename]
 const watchPatterns = playbook.content.sources.filter((source) => !source.url.includes(':')).reduce((accum, source) => {
-  accum.push(`./antora-playbook.yml`)
-  accum.push(`./antora.yml`)
-  accum.push(`./gulpfile.js`)
-  accum.push(`./modules/**/*`)
-  accum.push(`./supplemental-ui/**/*`)
-  return accum
+    accum.push(`./antora-playbook.yml`)
+    accum.push(`./antora.yml`)
+    accum.push(`./gulpfile.js`)
+    accum.push(`./modules/**/*`)
+    accum.push(`./supplemental-ui/**/*`)
+    return accum
 }, [])
 
 function generate(done) {
@@ -89,4 +89,3 @@ exports.default = series(
     serve,
     parallel(validate_language_changes, validate_links, validate_shell_scripts)
 );
-

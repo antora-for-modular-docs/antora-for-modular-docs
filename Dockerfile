@@ -14,7 +14,7 @@ USER root
 
 # Build htmltest
 WORKDIR /htmltest
-ARG HTMLTEST_VERSION=0.15.0
+ARG HTMLTEST_VERSION=0.16.0
 RUN wget -qO- https://github.com/wjdp/htmltest/archive/refs/tags/v${HTMLTEST_VERSION}.tar.gz | tar --strip-components=1 -zxvf - \
     &&  export ARCH="$(uname -m)" \
     &&  if [[ ${ARCH} == "x86_64" ]]; \
@@ -27,7 +27,7 @@ RUN wget -qO- https://github.com/wjdp/htmltest/archive/refs/tags/v${HTMLTEST_VER
 
 # Build vale
 WORKDIR /vale
-ARG VALE_VERSION=2.15.0
+ARG VALE_VERSION=2.20.0
 RUN wget -qO- https://github.com/errata-ai/vale/archive/v${VALE_VERSION}.tar.gz | tar --strip-components=1 -zxvf - \
     &&  export ARCH="$(uname -m)" \
     &&  if [[ ${ARCH} == "x86_64" ]]; \
@@ -66,8 +66,10 @@ LABEL description="Tools to build documentation using Antora for modular docs." 
     vendor="Antora for modular docs team" \
     version="2022.01"
 
-ARG ANTORA_VERSION=3.0.1
-RUN dnf install -y \
+# Install DNF packages
+RUN set -x \
+    && dnf upgrade --assumeyes --quiet \
+    && dnf install --assumeyes --quiet \
     bash \
     curl \
     file \
@@ -81,39 +83,51 @@ RUN dnf install -y \
     tar \
     unzip \
     wget \
-    && dnf clean all \
+    && dnf clean all
+
+# Install Python packages
+RUN set -x \
     && pip3 install --no-cache-dir --no-input \
     diagrams \
     jinja2-cli \
-    yq \
-    && npm install -g  \
+    yq
+
+# Install Node.js packages
+ARG ANTORA_VERSION=3.0.2
+RUN set -x \
+    && corepack enable \
+    && yarnpkg global add --non-interactive \
     @antora/cli@${ANTORA_VERSION} \
     @antora/lunr-extension \
     @antora/site-generator@${ANTORA_VERSION} \
     asciidoctor \
+    asciidoctor-emoji \
+    asciidoctor-kroki \
     gulp \
     gulp-cli \
     gulp-connect \
     js-yaml \
     && npm cache clean --force \
-    && rm /tmp/* -rfv \
-    && corepack enable 
+    && rm /tmp/* -rfv
 
-ENV NODE_PATH="/opt/app-root/src/.npm-global/lib/node_modules/"
+# Avoid error: Local gulp not found in /projects
+ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules"
 VOLUME /projects
 WORKDIR /projects
 USER 1001
 
-RUN antora --version \
+RUN set -x \
+    && antora --version \
     && asciidoctor --version \
     && bash --version \
-    && curl --version \
     && curl --version \
     && git --version \
     && gulp --version \
     && htmltest --version \
     && jinja2 --version \
-    && jq --version \ 
+    && jq --version \
+    && pip3 freeze \
     && vale -v \
     && yarn --version \
-    && yq --version 
+    && yarnpkg global list \
+    && yq --version

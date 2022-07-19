@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env sh
 #
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
@@ -9,8 +9,10 @@
 #
 set -e
 
+vale sync
+
 if [ -z "${GITHUB_BASE_REF}" ]
-    then 
+    then
         MAINBRANCH="origin/main"
     else
         MAINBRANCH="origin/$GITHUB_BASE_REF"

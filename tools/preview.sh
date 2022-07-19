@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env sh
 #
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
@@ -13,6 +13,6 @@ set -e
 # Enable user to delete created files afterwards
 umask 002
 # Get Vale styles
-./tools/get-vale-styles.sh
-# Build Antora website
+vale sync
+# Build
 LIVERELOAD=true gulp

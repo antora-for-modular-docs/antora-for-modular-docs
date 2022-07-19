@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env sh
 #
 # Copyright (c) 2021 Red Hat, Inc.
 # This program and the accompanying materials are made
