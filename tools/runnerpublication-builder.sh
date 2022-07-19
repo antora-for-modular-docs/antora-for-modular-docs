@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env sh
 #
 # Copyright (c) 2022 Red Hat, Inc.
 # This program and the accompanying materials are made
@@ -35,4 +35,3 @@ ${RUNNER} run --rm -ti \
   --entrypoint="./tools/publication-builder.sh" \
   -p 4000:4000 -p 35729:35729 \
   "quay.io/antoraformodulardocs/antora-for-modular-docs"
-

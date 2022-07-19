@@ -1,0 +1,9 @@
+:_content-type: REFERENCE
+
+[id="title_{context}"]
+= Title
+
+[role="_abstract"]
+
+[role="_additional-resources"]
+.Additional resources
