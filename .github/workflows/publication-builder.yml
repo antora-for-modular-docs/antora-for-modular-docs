@@ -29,4 +29,4 @@ jobs:
           force_orphan: true # publish branch with only the latest commit
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: publication
-          publish_dir: build/antora-for-modular-docs
+          publish_dir: build/docs
