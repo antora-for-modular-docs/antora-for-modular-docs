@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Starting an Antora project compatible with modular documentation :: Antora for modular documentation</title>
+    <link rel="canonical" href="https://antora-for-modular-docs.github.io/antora-for-modular-docs/docs/user-guide/introduction/">
+    <meta name="keywords" content="introduction, antora, modular documentation">
+    <meta name="generator" content="Antora 3.0.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/extra.css">
+<link rel="stylesheet" href="../../../_/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<script>var uiRootPath = '../../../_'</script>
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <button class="navbar-burger" data-target="topbar-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <img src="../../../_/img/project-logo.png" class="navbar-logo" alt="Project logo">
+        <a href="https://antora-for-modular-docs.github.io/antora-for-modular-docs/index.html">Antora for modular documentation</a>
+      </div>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs" autofocus>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://github.com/antora-for-modular-docs/antora-for-modular-docs/">Source Code</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="docs" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="./">Antora for Modular Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="./">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../authoring/">Authoring guidelines</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Antora for Modular Documentation</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="./">Antora for Modular Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="./">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="./" class="home-link is-current"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="./">Antora for Modular Documentation</a></li>
+    <li><a href="./">Introduction</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/antora-for-modular-docs/antora-for-modular-docs/edit/main/modules/user-guide/pages/introduction.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Starting an Antora project compatible with modular documentation</h1>
+<div class="paragraph _abstract">
+<p>Starting an Antora project compatible with Modular Documentation.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Docker or Podman.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a repository by using <a href="https://github.com/antora-for-modular-docs/antora-for-modular-docs/generate">the Antora for Modular Docs repository template</a> and clone the repository to your local environment, or download the <a href="https://github.com/antora-for-modular-docs/antora-for-modular-docs/archive/refs/heads/main.zip">Antora for Modular Docs zip archive</a>, and use the content of this archive to start a repository. The repository has user documentation and configuration files to:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Build the documentation with Antora</p>
+</li>
+<li>
+<p>Validate internal and external links with <a href="https://github.com/wjdp/htmltest"><code>htmltest</code></a></p>
+</li>
+<li>
+<p>Validate language changes with <a href="https://redhat-documentation.github.io/vale-at-red-hat/">Vale and the Red Hat style</a></p>
+</li>
+<li>
+<p>Publish a preview</p>
+</li>
+<li>
+<p>Edit and build the documentation on <a href="https://workspaces.openshift.com">Eclipse Che hosted by Red Hat</a></p>
+</li>
+<li>
+<p>Automate workflows and publish on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Edit at least the <code>title</code> field in <code>antora.yml</code>. See <a href="https://docs.antora.org/antora/latest/component-version-descriptor/">What’s antora.yml? - Antora documentation</a>.</p>
+</li>
+<li>
+<p>Edit at least the <code>title</code>, <code>url</code>, <code>edit_url</code>, <code>output.destination.path</code> fields in <code>antora-playbook.yml</code>. <code>output.destination.path</code> must match the <em>&lt;location&gt;</em> in the <code>url</code> (https://<em>&lt;FQDN&gt;</em>/<em>&lt;location&gt;</em>). See <a href="https://docs.antora.org/antora/latest/playbook/set-up-playbook/">Set up a playbook - Antora documentation</a>.</p>
+</li>
+<li>
+<p>Edit the repository URL in the <code>supplemental-ui/partials/header-content.hbs</code> file and in the <code>IgnoreURLs</code> list in the <code>.htmltest.yml</code> file.</p>
+</li>
+<li>
+<p>Run the preview on a local environment and verify the output on the preview server: <a href="http://0.0.0.0:4000" class="bare">http://0.0.0.0:4000</a>.</p>
+<div class="listingblock">
+<div class="content">
+<pre>./tools/runnerpreview.sh</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create an initial commit containing the result and publish to your remote Git repository.</p>
+</li>
+<li>
+<p>To publish the docs by using GitHub pages, enable GitHub Pages in the remote repository configuration: choose <code>gh-pages</code> as source branch, and <code>root</code> as source directory.</p>
+</li>
+<li>
+<p>To publish the build result for the pull requests, create a Surge token and set the <code>SURGE_TOKEN</code> environment variable in the remote Git repository secrets (<strong>Settings &gt; Secrets &gt; Actions</strong>).</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ npx -y surge token</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Run preview on a local environment</p>
+<div class="listingblock">
+<div class="content">
+<pre>./tools/runnerpreview.sh</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the remote Git repository and watch for the changes in the Actions and Pages.</p>
+</li>
+</ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.antora.org/">Antora documentation</a></p>
+</li>
+<li>
+<p><a href="https://redhat-documentation.github.io/modular-docs/">Modular Documentation Reference Guide</a>.</p>
+</li>
+<li>
+<p><a href="../authoring/" class="xref page">Authoring guidelines for an Antora project compatible with modular documentation</a></p>
+</li>
+<li>
+<p><span class="image"><a class="image" href="https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs"><img src="https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs/status" alt="Docker Repository on Quay"></a></span></p>
+</li>
+<li>
+<p><span class="image"><a class="image" href="https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yaml"><img src="https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yml/badge.svg" alt="Preview build"></a></span></p>
+</li>
+<li>
+<p><span class="image"><a class="image" href="https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yaml"><img src="https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yml/badge.svg" alt="Publication builder"></a></span></p>
+</li>
+<li>
+<p><span class="image"><a class="image" href="https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment/badge.svg" alt="Pages deployment"></a></span></p>
+</li>
+</ul>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer  class="footer">
+<p><a href="https://antora-for-modular-docs.github.io/antora-for-modular-docs/sitemap.xml">Site map</a>
+</p>
+</footer><script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>
