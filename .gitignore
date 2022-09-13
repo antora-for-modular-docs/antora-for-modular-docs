@@ -9,14 +9,16 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
+*.code-workspace
+*.css.map
+.DS_Store
 .cache
 .github/styles
-.DS_Store
+.idea
+.vscode
 .yarnrc
 /build/
-/out/
 /node_modules/
+/out/
 /workspace/
 yarn-error.log
-*.css.map
-*.code-workspace
