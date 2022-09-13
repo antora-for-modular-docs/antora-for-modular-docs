@@ -1,11 +1,23 @@
-# link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs]
+= link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs template repository]
 
-Template repository to start an Antora project compatible with Modular Docs guidelines. 
+Template repository to start a documentation website:
 
-* link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs].
+* Built by link:https://docs.antora.org/antora/latest/[Antora]
+* Written in link:https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference[AsciiDoc]
+* Compliant with link:https://redhat-documentation.github.io/modular-docs/[Modular docs guidelines]
+* Compliant with link:https://redhat-documentation.github.io/vale-at-red-hat/docs/user-guide/redhat-style-for-vale[Red Hat style guide]
+
+.Procedure
+* See: link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs template repository documentation]
+
+.Additional resources
 * image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yml/badge.svg[Preview build,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/preview-build.yaml]
-*  image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yml/badge.svg[Publication builder,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yaml]
+* image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yml/badge.svg[Publication builder,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/publication-builder.yaml]
 * image:https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment/badge.svg[Pages deployment,link=https://github.com/antora-for-modular-docs/antora-for-modular-docs/actions/workflows/pages/pages-build-deployment]
-* image:https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs/status["Docker Repository on Quay", link="https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs"]
+* image:https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs/status["Docker Repository on Quay",link="https://quay.io/repository/antoraformodulardocs/antora-for-modular-docs"]
+
+* link:https://antora-for-modular-docs.github.io/antora-for-modular-docs/[Antora for modular docs template repository]
 * link:https://docs.antora.org/antora/latest/[Antora documentation]
-* link:https://redhat-documentation.github.io/modular-docs/[Modular docs reference guide]
+* link:https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference[AsciiDoc reference]
+* link:https://redhat-documentation.github.io/modular-docs/[Modular docs reference]
+* link:https://redhat-documentation.github.io/vale-at-red-hat/docs/user-guide/redhat-style-for-vale[Red Hat style guide]

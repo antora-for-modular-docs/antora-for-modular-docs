@@ -1,0 +1,6 @@
+// AsciiDoc attributes for the preview in your editor
+:docinfo: shared
+:docinfodir: {asciidoctorconfigdir}/.asciidoctor
+:linkcss:
+:stylesdir: https://docs.antora.org/_/css/
+:stylesheet: site.css
