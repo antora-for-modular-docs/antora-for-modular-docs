@@ -14,7 +14,7 @@ Follow these guidelines to ensure compliance with Modular documentation.
 .. Optionally, rename the `user-guide` module that the example defines.
 
 .. Optionally, to add an Antora module:
-... Create the module directory, subdirectories and navigation file,
+... Create the module directory, subdirectories, and navigation file,
 ... Add the navigation file to the `antora.yml` file.
 See link:https://docs.antora.org/antora/latest/standard-directories/[Antora - Standard File and Directory Set].
 

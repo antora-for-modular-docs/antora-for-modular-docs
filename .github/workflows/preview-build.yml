@@ -63,6 +63,6 @@ jobs:
       - name: Validate internal and external links
         run: htmltest
       - name: Validate language changes
-        run: tools/validate-language-changes.sh
+        run: tools/validate-language.sh
       - name: Validate shell scripts changes
         run: tools/validate-shell-scripts.sh

@@ -13,7 +13,7 @@ Starting an Antora website compatible with Modular Documentation.
 The template repository has required files to:
 
 * Build the documentation with link:https://docs.antora.org[Antora]
-* Validate internal and external links with link:https://github.com/wjdp/htmltest[Htmltest]
+* Validate internal and external links with link:https://github.com/wjdp/htmltest[`htmltest]
 * Validate language changes with link:https://redhat-documentation.github.io/vale-at-red-hat/[Red Hat style for Vale]
 * Edit and build the documentation on link:https://workspaces.openshift.com[Eclipse Che hosted by Red Hat]
 * Publish a preview
@@ -25,7 +25,7 @@ The template repository has required files to:
 .Procedure
 . Create a repository from the template by:
 * Running link:https://github.com/antora-for-modular-docs/antora-for-modular-docs/generate[the Antora for Modular Docs repository template] and cloning the repository to your local environment
-* Or downloading the https://github.com/antora-for-modular-docs/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs zip archive], and using the content of this archive to start a repository.
+* Or downloading the https://github.com/antora-for-modular-docs/antora-for-modular-docs/archive/refs/heads/main.zip[Antora for Modular Docs archive], and using the content of this archive to start a repository.
 
 . Edit `antora.yml`.
 See link:https://docs.antora.org/antora/latest/component-version-descriptor/[What’s antora.yml? - Antora documentation].
@@ -56,9 +56,9 @@ content:
       url: ./
 ----
 +
-<1> Replace __<title>__ by the website title
-<2> Replace __<url>__ by the website publication URL
-<3> Replace __<organization>__/__<repository>__  in the source code edit URL
+<1> The website title
+<2> The website publication URL
+<3> The source repository edit URL
 
 . Edit the repository URL in the `supplemental-ui/partials/header-content.hbs` file and in the `IgnoreURLs` list in the `.htmltest.yml` file.
 
@@ -70,14 +70,16 @@ content:
 
 . Create an initial commit containing the result and publish to your remote Git repository.
 
-. To publish the docs by using GitHub pages, enable GitHub Pages in the remote repository configuration: choose `gh-pages` as source branch, and `root` as source directory.
+. To publish the docs by using GitHub pages, enable GitHub Pages in the remote repository configuration with:
++
+Source branch:: `gh-pages`
+Source directory:: `root`
 
 . To publish the build result for the pull requests, create a Surge token and set the `SURGE_TOKEN` environment variable in the remote Git repository secrets (*Settings > Secrets > Actions*).
 +
 ----
 $ npx -y surge token
 ----
-
 
 .Verification
 . Run preview on a local environment
@@ -86,7 +88,7 @@ $ npx -y surge token
 ./tools/runnerpreview.sh
 ----
 
-. Navigate to the remote Git repository and watch for the changes in the Actions and Pages.
+. Browse to the remote Git repository and watch for the changes in the Actions and Pages.
 
 [role="_additional-resources"]
 .Additional resources

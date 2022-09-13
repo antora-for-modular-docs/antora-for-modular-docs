@@ -51,7 +51,7 @@ async function serve(done) {
 async function validate_language_changes() {
     // Report links errors but don't make gulp fail.
     try {
-        const { stdout, stderr } = await exec('./tools/validate-language-changes.sh 2>&1')
+        const { stdout, stderr } = await exec('./tools/validate-language.sh 2>&1')
         console.log(stdout, stderr);
     }
     catch (error) {

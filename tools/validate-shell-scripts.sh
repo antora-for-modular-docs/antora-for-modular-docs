@@ -8,19 +8,14 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 set -e
-if [ -z "${GITHUB_BASE_REF}" ]
-    then 
-        MainBranch="origin/main"
-    else
-        MainBranch="origin/$GITHUB_BASE_REF"
-fi
-Files=$(git diff --name-only --diff-filter=AM "$MainBranch" | xargs -n1  file | grep script | cut -d: -f1)
+
+Files=$(find . -type f | grep -v './.git' | xargs -n1  file | grep script | cut -d: -f1)
 if [ -n "${Files}" ]
     then
-        echo "Validating shell scripts added or modified in comparison to $MainBranch"
+        echo "Validating shell scripts"
         set -x
         # shellcheck disable=SC2086 # We want to split on spaces
         shellcheck ${Files}
     else
-        echo "No shell scripts added or modified in comparison to $MainBranch"
+        echo "No shell scripts to validate"
 fi
