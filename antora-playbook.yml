@@ -11,44 +11,38 @@
 # See: https://docs.antora.org/antora/latest/playbook/
 #
 site:
-  url: https://antora-for-modular-docs.github.io/antora-for-modular-docs/
   title: Antora for modular documentation
+  url: https://antora-for-modular-docs.github.io/antora-for-modular-docs/
   start_page: docs::index.adoc
   robots: allow
 content:
   sources:
-    - url: ./
+    - edit_url: "https://github.com/antora-for-modular-docs/antora-for-modular-docs/edit/main/{path}"
       branches:
         - HEAD
         - v*
-      edit_url: "https://github.com/antora-for-modular-docs/antora-for-modular-docs/edit/main/{path}"
+      url: ./
 antora:
   extensions:
     - require: "@antora/lunr-extension" # https://gitlab.com/antora/antora-lunr-extension/
+    - require: "@antora/collector-extension"
 asciidoc:
   attributes:
     context: docs
   sourcemap: true
+  extensions:
+    - asciidoctor-emoji
+    - asciidoctor-kroki
 ui:
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
   supplemental_files: ./supplemental-ui
-  output_dir: _
 urls:
   html_extension_style: indexify
-  latest_version_segment_strategy: replace
-  redirect_facility: static
 output:
-  destinations:
-    - provider: fs
-      clean: true
-      path: build/antora-for-modular-docs/
+  clean: true
 runtime:
   log:
-    level: info
     failure_level: warn
-    format: pretty
   fetch: true
-  cache_dir: ./.cache/antora
-

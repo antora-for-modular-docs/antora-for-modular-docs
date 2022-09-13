@@ -10,17 +10,17 @@
 set -e
 if [ -z "${GITHUB_BASE_REF}" ]
     then 
-        MAINBRANCH="origin/main"
+        MainBranch="origin/main"
     else
-        MAINBRANCH="origin/$GITHUB_BASE_REF"
+        MainBranch="origin/$GITHUB_BASE_REF"
 fi
-FILES=$(git diff --name-only --diff-filter=AM "$MAINBRANCH" | xargs -n1  file | grep script | cut -d: -f1)
-if [ -n "${FILES}" ]
+Files=$(git diff --name-only --diff-filter=AM "$MainBranch" | xargs -n1  file | grep script | cut -d: -f1)
+if [ -n "${Files}" ]
     then
-        echo "Validating shell scripts added or modified in comparison to $MAINBRANCH"
+        echo "Validating shell scripts added or modified in comparison to $MainBranch"
         set -x
         # shellcheck disable=SC2086 # We want to split on spaces
-        shellcheck ${FILES}
+        shellcheck ${Files}
     else
-        echo "No shell scripts added or modified in comparison to $MAINBRANCH"
+        echo "No shell scripts added or modified in comparison to $MainBranch"
 fi

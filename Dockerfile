@@ -8,98 +8,74 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-# Build binaries in a temporary container
-FROM registry.access.redhat.com/ubi8/go-toolset as builder
+# Fedora has DNF packages for Htmltest and ShellCheck.
+FROM quay.io/fedora/nodejs-16:latest
 USER root
-
-# Build htmltest
-WORKDIR /htmltest
-ARG HTMLTEST_VERSION=0.16.0
-RUN wget -qO- https://github.com/wjdp/htmltest/archive/refs/tags/v${HTMLTEST_VERSION}.tar.gz | tar --strip-components=1 -zxvf - \
-    &&  export ARCH="$(uname -m)" \
-    &&  if [[ ${ARCH} == "x86_64" ]]; \
-    then export ARCH="amd64"; \
-    elif [[ ${ARCH} == "aarch64" ]]; \
-    then export ARCH="arm64"; \
-    fi \
-    &&  GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -tags closed -ldflags "-X main.date=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.version=${HTMLTEST_VERSION}" -o bin/htmltest . \
-    &&  /htmltest/bin/htmltest --version
-
-# Build vale
-WORKDIR /vale
-ARG VALE_VERSION=2.20.0
-RUN wget -qO- https://github.com/errata-ai/vale/archive/v${VALE_VERSION}.tar.gz | tar --strip-components=1 -zxvf - \
-    &&  export ARCH="$(uname -m)" \
-    &&  if [[ ${ARCH} == "x86_64" ]]; \
-    then export ARCH="amd64"; \
-    elif [[ ${ARCH} == "aarch64" ]]; \
-    then export ARCH="arm64"; \
-    fi \
-    &&  GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -tags closed -ldflags "-X main.date=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.version=${VALE_VERSION}" -o bin/vale ./cmd/vale \
-    &&  /vale/bin/vale --version
-
-# Download shellcheck
-ARG SHELLCHECK_VERSION=0.8.0
-RUN wget -qO- https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.$(uname -m).tar.xz | tar -C /usr/local/bin/ --no-anchored 'shellcheck' --strip=1 -xJf -
-
-# Prepare the container
-FROM registry.access.redhat.com/ubi8/nodejs-16
-USER root
-
-COPY --from=builder /vale/bin/vale /usr/local/bin/vale
-COPY --from=builder /htmltest/bin/htmltest /usr/local/bin/htmltest
-COPY --from=builder /usr/local/bin/shellcheck /usr/local/bin/shellcheck
 
 EXPOSE 4000
 EXPOSE 35729
 
-LABEL description="Tools to build documentation using Antora for modular docs." \
-    io.k8s.description="Tools to build documentation using Antora for modular docs." \
-    io.k8s.display-name="Antora for modular docs" \
-    license="MIT" \
-    MAINTAINERS="Antora for modular docs team" \
-    maintainer="Antora for modular docs team" \
-    name="" \
-    source="https://github.com/eclipse/che-docs/blob/main/Dockerfile" \
-    summary="Tools to build documentation using Antora for modular docs" \
-    URL="quay.io/antoraformodulardocs/antora-for-modular-docs" \
-    vendor="Antora for modular docs team" \
-    version="2022.01"
+ENV NAME="Antora for modular docs"
+ENV SUMMARY="Platform for building documentation websites powered by Antora and compliant with modular docs."
+ENV DESCRIPTION="The container contains Antora, some Antora extensions, some Asciidoctor extensions, Git CLI, Graphviz, Htmltest, Vale, and some additional tools."
 
+LABEL description="$DESCRIPTION" \
+    io.k8s.description="$DESCRIPTION" \
+    io.k8s.display-name="$NAME" \
+    io.openshift.expose-services="4000:http" \
+    license="EPL" \
+    MAINTAINERS="$NAME maintainers" \
+    maintainer="$NAME maintainers" \
+    name="quay.io/antoraformodulardocs/antora-for-modular-docs" \
+    source="https://github.com/antora-for-modular-docs/antora-for-modular-docs/blob/main/Dockerfile" \
+    summary="$SUMMARY" \
+    URL="quay.io/antoraformodulardocs/antora-for-modular-docs" \
+    vendor="$NAME" \
+    version="2022.09"
+
+# Upgrade the system
+RUN dnf upgrade --assumeyes --quiet
 # Install DNF packages
 RUN set -x \
-    && dnf upgrade --assumeyes --quiet \
+    && dnf install --assumeyes --quiet dnf-plugins-core \
+    && dnf copr enable --assumeyes --quiet mczernek/vale \
     && dnf install --assumeyes --quiet \
     bash \
     curl \
     file \
     findutils \
     git-core \
+    graphviz \
     grep \
+    htmltest \
     jq \
     nodejs \
+    python3-jinja2-cli \
     python3-pip \
     python3-wheel \
+    ShellCheck \
     tar \
     unzip \
+    vale \
     wget \
+    yarnpkg \
     && dnf clean all
 
 # Install Python packages
 RUN set -x \
     && pip3 install --no-cache-dir --no-input \
     diagrams \
-    jinja2-cli \
     yq
 
+# Avoid error: Local gulp not found in /projects
+ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules"
 # Install Node.js packages
-ARG ANTORA_VERSION=3.0.2
 RUN set -x \
-    && corepack enable \
     && yarnpkg global add --non-interactive \
-    @antora/cli@${ANTORA_VERSION} \
+    @antora/cli \
+    @antora/collector-extension \
     @antora/lunr-extension \
-    @antora/site-generator@${ANTORA_VERSION} \
+    @antora/site-generator \
     asciidoctor \
     asciidoctor-emoji \
     asciidoctor-kroki \
@@ -110,8 +86,6 @@ RUN set -x \
     && npm cache clean --force \
     && rm /tmp/* -rfv
 
-# Avoid error: Local gulp not found in /projects
-ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules"
 VOLUME /projects
 WORKDIR /projects
 USER 1001

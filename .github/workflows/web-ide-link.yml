@@ -14,6 +14,7 @@ on:
       - opened
 jobs:
   add-web-ide-link:
+    name: Add web IDE link
     runs-on: ubuntu-20.04
     steps:
       - name: Add Web IDE link

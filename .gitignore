@@ -20,5 +20,6 @@
 /build/
 /node_modules/
 /out/
+/styles/
 /workspace/
 yarn-error.log

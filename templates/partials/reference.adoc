@@ -4,6 +4,5 @@
 = Title
 
 [role="_abstract"]
-
 [role="_additional-resources"]
 .Additional resources

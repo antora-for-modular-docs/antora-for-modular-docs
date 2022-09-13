@@ -7,13 +7,14 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-
 # Detect available runner
-if command -v podman > /dev/null
-  then RUNNER=podman
-elif command -v docker > /dev/null
-  then RUNNER=docker
-else echo "No installation of podman or docker found in the PATH" ; exit 1
+if [ -z ${RUNNER+x} ]; then
+  if command -v podman > /dev/null
+    then RUNNER=podman
+  elif command -v docker > /dev/null
+    then RUNNER=docker
+  else echo "No installation of podman or docker found in the PATH" ; exit 1
+  fi
 fi
 
 # Fail on errors
@@ -30,8 +31,10 @@ fi
 set -x
 
 ${RUNNER} run --rm -ti \
-  --name "${PWD##*/}" \
-  -v "$PWD:/projects:z" -w /projects \
   --entrypoint="./tools/preview.sh" \
-  -p 4000:4000 -p 35729:35729 \
+  --name "${PWD##*/}" \
+  --publish 4000:4000 \
+  --publish 35729:35729 \
+  --volume "$PWD:/projects:Z" \
+  -w /projects \
   "${IMAGE}"
