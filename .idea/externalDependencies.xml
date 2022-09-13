@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalDependencies">
+    <plugin id="Docker" />
+    <plugin id="com.dmarcotte.handlebars" />
+    <plugin id="com.intellij.grazie.pro" />
+    <plugin id="org.asciidoctor.intellij.asciidoc" />
+    <plugin id="org.jetbrains.plugins.github" />
+    <plugin id="tanvd.grazi" />
+  </component>
+</project>
