@@ -1,6 +1,16 @@
-// AsciiDoc attributes for the preview in your editor
+// `.asciidoctorconfig`
+// Asciidoctor configuration
+// See https://intellij-asciidoc-plugin.ahus1.de/docs/users-guide/features/advanced/asciidoctorconfig-file.html
+//
+// Copyright(c) 2021-2023 Red Hat, Inc.
+// This program and the accompanying materials are made
+// available under the terms of the Eclipse Public License 2.0
+// which is available at https://www.eclipse.org/legal/epl-2.0/
+//
+//  SPDX - License - Identifier: EPL - 2.0
+//
 :docinfo: shared
 :docinfodir: {asciidoctorconfigdir}/.asciidoctor
 :linkcss:
-:stylesdir: https://docs.antora.org/_/css/
+:stylesdir: https://antora-for-modular-docs.github.io/antora-for-modular-docs//_/css/
 :stylesheet: site.css

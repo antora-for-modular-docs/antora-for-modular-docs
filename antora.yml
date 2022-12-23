@@ -1,16 +1,17 @@
 ---
-# Copyright (c) 2021 Red Hat, Inc.
+# `antora.yml`
+# Antora component version descriptor.
+# See https://docs.antora.org/antora/latest/component-version-descriptor/
+#
+# Copyright (c) 2021-2023 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-# Antora component version descriptor.
-# See https://docs.antora.org/antora/latest/component-version-descriptor/
-#
 name: docs
-title: Antora for Modular Documentation
+title: Antora for Modular Documentation # Edit this line
 version: ~
 display_version: main
 prerelease: false
@@ -22,5 +23,3 @@ asciidoc:
     # for antora
     experimental: ""
     icons: font
-    # for modular docs
-    context: docs # https://redhat-documentation.github.io/modular-docs/#module_anchor-and-file-names-concept

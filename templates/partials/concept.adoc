@@ -1,9 +1,11 @@
 :_content-type: CONCEPT
 
-[id="title_{context}"]
 = Title
 
-[role="_abstract"]
+// Introduction
 
-[role="_additional-resources"]
+// Content
+
 .Additional resources
+
+// * Unordered list

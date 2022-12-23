@@ -2,18 +2,26 @@
 :description: A description of the page stored in an HTML meta tag.
 :keywords: comma-separated values, stored, in an HTML, meta, tag
 :navtitle: Title
-// :page-aliases:
+:page-aliases:
 
-[id="title_{context}"]
 = Title
 
-[role="_abstract"]
+// Introduction
 
 .Prerequisites
 
+// * Unordered list
+
 .Procedure
+
+// . Ordered list
+// . Ordered list
 
 .Verification
 
-[role="_additional-resources"]
+// . Ordered list
+// . Ordered list
+
 .Additional resources
+
+// * Unordered list

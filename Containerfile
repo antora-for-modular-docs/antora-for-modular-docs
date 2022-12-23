@@ -8,47 +8,11 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-# Build binaries in a temporary container
-FROM registry.access.redhat.com/ubi8/go-toolset as builder
+# Require podman to run ccutil
+FROM quay.io/podman/stable:latest
+
+# Require superuser privileges to install packages
 USER root
-
-# Build htmltest
-WORKDIR /htmltest
-ARG HTMLTEST_VERSION=0.16.0
-RUN wget -qO- https://github.com/wjdp/htmltest/archive/refs/tags/v${HTMLTEST_VERSION}.tar.gz | tar --strip-components=1 -zxvf - \
-    &&  export ARCH="$(uname -m)" \
-    &&  if [[ ${ARCH} == "x86_64" ]]; \
-    then export ARCH="amd64"; \
-    elif [[ ${ARCH} == "aarch64" ]]; \
-    then export ARCH="arm64"; \
-    fi \
-    &&  GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -tags closed -ldflags "-X main.date=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.version=${HTMLTEST_VERSION}" -o bin/htmltest . \
-    &&  /htmltest/bin/htmltest --version
-
-# Build vale
-WORKDIR /vale
-ARG VALE_VERSION=2.20.0
-RUN wget -qO- https://github.com/errata-ai/vale/archive/v${VALE_VERSION}.tar.gz | tar --strip-components=1 -zxvf - \
-    &&  export ARCH="$(uname -m)" \
-    &&  if [[ ${ARCH} == "x86_64" ]]; \
-    then export ARCH="amd64"; \
-    elif [[ ${ARCH} == "aarch64" ]]; \
-    then export ARCH="arm64"; \
-    fi \
-    &&  GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -tags closed -ldflags "-X main.date=`date -u +%Y-%m-%dT%H:%M:%SZ` -X main.version=${VALE_VERSION}" -o bin/vale ./cmd/vale \
-    &&  /vale/bin/vale --version
-
-# Download shellcheck
-ARG SHELLCHECK_VERSION=0.8.0
-RUN wget -qO- https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.$(uname -m).tar.xz | tar -C /usr/local/bin/ --no-anchored 'shellcheck' --strip=1 -xJf -
-
-# Prepare the container
-FROM registry.access.redhat.com/ubi8/nodejs-16
-USER root
-
-COPY --from=builder /vale/bin/vale /usr/local/bin/vale
-COPY --from=builder /htmltest/bin/htmltest /usr/local/bin/htmltest
-COPY --from=builder /usr/local/bin/shellcheck /usr/local/bin/shellcheck
 
 EXPOSE 4000
 EXPOSE 35729
@@ -64,33 +28,47 @@ LABEL description="Tools to build documentation using Antora for modular docs." 
     summary="Tools to build documentation using Antora for modular docs" \
     URL="quay.io/antoraformodulardocs/antora-for-modular-docs" \
     vendor="Antora for modular docs team" \
-    version="2022.01"
+    version="2022.12"
 
 # Install DNF packages
 RUN set -x \
     && dnf upgrade --assumeyes --quiet \
     && dnf install --assumeyes --quiet \
+    ShellCheck \
     bash \
     curl \
     file \
     findutils \
     git-core \
+    graphviz \
     grep \
+    htmltest \
     jq \
     nodejs \
+    python3-jinja2-cli \
     python3-pip \
     python3-wheel \
+    rsync \
+    rubygem-bundler \
+    shyaml \
     tar \
+    tox \
+    tree \
     unzip \
+    vale \
     wget \
-    && dnf clean all
-
+    which \
+    && dnf clean all --quiet \
+    && dot -v \
+    && node --version \
+    && ruby --version \
+    && vale --version
 # Install Python packages
 RUN set -x \
-    && pip3 install --no-cache-dir --no-input \
+    && pip3 install --no-cache-dir --no-input --quiet \
     diagrams \
-    jinja2-cli \
-    yq
+    yq \
+    && yq --versionq
 
 # Install Node.js packages
 ARG ANTORA_VERSION=3.0.2

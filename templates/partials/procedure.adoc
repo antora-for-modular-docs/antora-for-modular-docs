@@ -1,15 +1,23 @@
 :_content-type: PROCEDURE
 
-[id="title_{context}"]
 = Title
 
-[role="_abstract"]
+// Introduction
 
 .Prerequisites
 
+// * Unordered list
+
 .Procedure
+
+// . Ordered list
+// . Ordered list
 
 .Verification
 
-[role="_additional-resources"]
+// . Ordered list
+// . Ordered list
+
 .Additional resources
+
+// * Unordered list

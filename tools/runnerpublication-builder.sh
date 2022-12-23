@@ -31,7 +31,9 @@ set -x
 
 ${RUNNER} run --rm -ti \
   --name "${PWD##*/}" \
-  -v "$PWD:/projects:z" -w /projects \
+  --volume "$PWD:/projects:z" \
+  --workdir /projects \
   --entrypoint="./tools/publication-builder.sh" \
-  -p 4000:4000 -p 35729:35729 \
+  --port 4000:4000 \
+  --port 35729:35729 \
   "quay.io/antoraformodulardocs/antora-for-modular-docs"

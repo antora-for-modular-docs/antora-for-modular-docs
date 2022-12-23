@@ -3,10 +3,8 @@
 :navtitle: Introduction
 :page-aliases: end-user-guide:introduction
 
-[id="proc_starting-an-antora-project-compatible-with-modular-documentation_{context}"]
 = Starting an Antora project compatible with modular documentation
 
-[role="_abstract"]
 Starting an Antora project compatible with Modular Documentation.
 
 .Prerequisites

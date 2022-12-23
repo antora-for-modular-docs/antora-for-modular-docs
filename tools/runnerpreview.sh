@@ -29,9 +29,15 @@ fi
 # Display commands
 set -x
 
-${RUNNER} run --rm -ti \
-  --name "${PWD##*/}" \
-  -v "$PWD:/projects:z" -w /projects \
+${RUNNER} run \
   --entrypoint="./tools/preview.sh" \
-  -p 4000:4000 -p 35729:35729 \
+  --interactive \
+  --name "${PWD##*/}" \
+  --publish 35729:35729 \
+  --publish 4000:4000 \
+  --rm \
+  --tty \
+  --user root
+  --volume "$PWD:/projects:z" \
+  --workdor /projects \
   "${IMAGE}"

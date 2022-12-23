@@ -1,9 +1,11 @@
 :_content-type: REFERENCE
 
-[id="title_{context}"]
 = Title
 
-[role="_abstract"]
+// Introductiop
 
-[role="_additional-resources"]
+// Content
+
 .Additional resources
+
+// * Unordered list
